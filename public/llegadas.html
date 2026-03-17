@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LlegadasDay — Vuelos en tiempo real | TaxiNeto360</title>
+<meta name="description" content="Vuelos llegando a Barcelona y Madrid en tiempo real. Herramienta gratuita para taxistas por TaxiNeto360.">
+<meta property="og:title" content="LlegadasDay — Vuelos en tiempo real">
+<meta property="og:description" content="Mira qué vuelos llegan ahora mismo a BCN y MAD. Gratis.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C8A84E;--gold-light:#E8D48B;--dark:#0A0A0A;--dark2:#111;--dark3:#1A1A1A;
+  --dark4:#222;--green:#22C55E;--red:#EF4444;--orange:#F59E0B;--blue:#3B82F6;--white:#F5F5F5;--gray:#888;
+}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--white);min-height:100vh;overflow-x:hidden}
+a{color:var(--gold);text-decoration:none}
+
+/* Header */
+.header{background:var(--dark2);border-bottom:1px solid rgba(200,168,78,0.15);padding:12px 16px;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px)}
+.header-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo-area{display:flex;align-items:center;gap:10px}
+.logo-icon{width:32px;height:32px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.logo-text{font-size:14px;font-weight:700;color:var(--gold)}
+.logo-sub{font-size:10px;color:var(--gray);font-weight:500}
+.live-badge{background:var(--green);color:#000;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;display:flex;align-items:center;gap:4px}
+.live-dot{width:6px;height:6px;background:#000;border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* Airport Tabs */
+.airport-tabs{max-width:600px;margin:16px auto 0;padding:0 16px;display:flex;gap:8px}
+.airport-tab{flex:1;padding:12px;border-radius:12px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);text-align:center;cursor:pointer;transition:all 0.3s}
+.airport-tab.active{background:linear-gradient(135deg,rgba(200,168,78,0.15),rgba(200,168,78,0.05));border-color:var(--gold)}
+.airport-tab h3{font-size:18px;font-weight:800;color:var(--white)}
+.airport-tab.active h3{color:var(--gold)}
+.airport-tab p{font-size:11px;color:var(--gray);margin-top:2px}
+
+/* Terminal Filter */
+.terminal-filter{max-width:600px;margin:12px auto 0;padding:0 16px;display:flex;gap:6px}
+.term-btn{padding:6px 14px;border-radius:20px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);color:var(--gray);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.3s}
+.term-btn.active{background:var(--gold);color:#000;border-color:var(--gold)}
+
+/* Stats Bar */
+.stats-bar{max-width:600px;margin:12px auto 0;padding:0 16px;display:flex;gap:8px}
+.stat-card{flex:1;background:var(--dark3);border-radius:10px;padding:10px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-num{font-size:20px;font-weight:800;color:var(--gold)}
+.stat-label{font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+
+/* Flight List */
+.flight-list{max-width:600px;margin:16px auto;padding:0 16px}
+.flight-card{background:var(--dark3);border-radius:14px;padding:14px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.04);transition:all 0.3s}
+.flight-card:active{transform:scale(0.98)}
+.flight-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.flight-code{font-size:16px;font-weight:800;color:var(--white)}
+.flight-airline{font-size:12px;color:var(--gray);font-weight:500}
+.flight-status{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.status-landed{background:rgba(34,197,94,0.15);color:var(--green)}
+.status-expected{background:rgba(59,130,246,0.15);color:var(--blue)}
+.status-delayed{background:rgba(245,158,11,0.15);color:var(--orange)}
+.status-cancelled{background:rgba(239,68,68,0.15);color:var(--red)}
+.flight-mid{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.flight-origin{font-size:13px;font-weight:600;color:var(--white)}
+.flight-arrow{color:var(--gold);font-size:12px}
+.flight-dest{font-size:13px;font-weight:600;color:var(--gold)}
+.flight-bottom{display:flex;justify-content:space-between;align-items:center}
+.flight-time{font-size:22px;font-weight:800;color:var(--white)}
+.flight-terminal{font-size:12px;color:var(--gray);background:var(--dark4);padding:4px 10px;border-radius:8px}
+.flight-eta{font-size:11px;color:var(--gold);font-weight:600;margin-top:4px}
+
+/* Empty State */
+.empty-state{text-align:center;padding:60px 20px}
+.empty-state .icon{font-size:48px;margin-bottom:16px}
+.empty-state h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.empty-state p{font-size:13px;color:var(--gray);line-height:1.5}
+
+/* Loading */
+.loading{text-align:center;padding:40px}
+.spinner{width:32px;height:32px;border:3px solid var(--dark4);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:13px;color:var(--gray)}
+
+/* CTA Banner */
+.cta-banner{max-width:600px;margin:8px auto 16px;padding:0 16px}
+.cta-inner{background:linear-gradient(135deg,rgba(200,168,78,0.12),rgba(200,168,78,0.04));border:1px solid rgba(200,168,78,0.2);border-radius:14px;padding:16px;text-align:center}
+.cta-inner h3{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.cta-inner p{font-size:12px;color:var(--gray);margin-bottom:12px;line-height:1.4}
+.cta-btn{display:inline-block;background:var(--gold);color:#000;font-size:13px;font-weight:700;padding:10px 24px;border-radius:10px;transition:all 0.3s}
+.cta-btn:hover{background:var(--gold-light)}
+
+/* Footer */
+.footer{max-width:600px;margin:0 auto;padding:20px 16px 40px;text-align:center}
+.footer p{font-size:11px;color:var(--gray);line-height:1.6}
+.footer .brand{color:var(--gold);font-weight:700}
+
+/* Share FAB */
+.share-fab{position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,168,78,0.3);cursor:pointer;z-index:99;transition:all 0.3s;font-size:20px}
+.share-fab:hover{transform:scale(1.1)}
+
+/* Refresh indicator */
+.refresh-bar{max-width:600px;margin:0 auto;padding:8px 16px;display:flex;justify-content:space-between;align-items:center}
+.refresh-text{font-size:10px;color:var(--gray)}
+.refresh-btn{background:none;border:1px solid rgba(255,255,255,0.1);color:var(--gray);font-size:11px;padding:4px 12px;border-radius:20px;cursor:pointer;transition:all 0.3s}
+.refresh-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Scroll */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--dark4);border-radius:4px}
+
+/* Time pill animation */
+.time-blink{animation:timeBlink 2s ease-in-out infinite}
+@keyframes timeBlink{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* Responsive */
+@media(max-width:380px){
+  .flight-time{font-size:18px}
+  .stat-num{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">✈</div>
+      <div>
+        <div class="logo-text">LlegadasDay</div>
+        <div class="logo-sub">by TaxiNeto360</div>
+      </div>
+    </div>
+    <div class="live-badge"><div class="live-dot"></div> EN VIVO</div>
+  </div>
+</div>
+
+<!-- Airport Tabs -->
+<div class="airport-tabs">
+  <div class="airport-tab active" onclick="selectAirport('BCN')" id="tab-BCN">
+    <h3>BCN</h3>
+    <p>Barcelona · El Prat</p>
+  </div>
+  <div class="airport-tab" onclick="selectAirport('MAD')" id="tab-MAD">
+    <h3>MAD</h3>
+    <p>Madrid · Barajas</p>
+  </div>
+</div>
+
+<!-- Terminal Filter -->
+<div class="terminal-filter" id="terminalFilter">
+  <div class="term-btn active" onclick="filterTerminal('all')">Todas</div>
+  <div class="term-btn" onclick="filterTerminal('T1')">T1</div>
+  <div class="term-btn" onclick="filterTerminal('T2')">T2</div>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-num" id="statTotal">--</div>
+    <div class="stat-label">Vuelos hoy</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="statNext">--</div>
+    <div class="stat-label">Prox. 1h</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="statLanded">--</div>
+    <div class="stat-label">Aterrizados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="statDelayed">--</div>
+    <div class="stat-label">Retrasados</div>
+  </div>
+</div>
+
+<!-- Refresh Bar -->
+<div class="refresh-bar">
+  <span class="refresh-text" id="lastUpdate">Actualizando...</span>
+  <button class="refresh-btn" onclick="loadFlights()">Actualizar</button>
+</div>
+
+<!-- Flight List -->
+<div class="flight-list" id="flightList">
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>Cargando vuelos...</p>
+  </div>
+</div>
+
+<!-- CTA Banner -->
+<div class="cta-banner">
+  <div class="cta-inner">
+    <h3>Esto es solo 1 de 6 herramientas</h3>
+    <p>TaxiNeto360 incluye TarifaGo, KPI Intelligence, neto real tras comisiones, y mucho mas. 7 dias gratis.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="cta-btn">Descargar gratis en Google Play</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p><span class="brand">TaxiNeto360</span> — Claridad para el dia a dia del taxi<br>
+  Datos de vuelos actualizados cada 10 minutos<br>
+  <a href="https://pau111000.github.io/Taxi360_WEB/">taxineto360.es</a></p>
+</div>
+
+<!-- Share FAB -->
+<div class="share-fab" onclick="shareApp()" title="Compartir">
+  📤
+</div>
+
+<script>
+// ============================================================
+// CONFIGURACION
+// ============================================================
+// IMPORTANTE: Cambia esta URL cuando tengas tu Cloudflare Worker desplegado
+// Mientras tanto, usa el modo demo con datos realistas
+const WORKER_URL = ''; // Pon aqui la URL de tu Cloudflare Worker, ej: 'https://llegadasday.taxineto360.workers.dev'
+const DEMO_MODE = !WORKER_URL; // Si no hay Worker, usa datos demo
+
+let currentAirport = 'BCN';
+let currentTerminal = 'all';
+let flightsData = [];
+
+// ============================================================
+// DATOS DEMO REALISTAS (se usan si no hay Worker configurado)
+// ============================================================
+function generateDemoFlights(airport) {
+  const now = new Date();
+  const airlines = airport === 'BCN' ? [
+    {code:'VY',name:'Vueling',origins:['London LGW','Roma FCO','Paris ORY','Amsterdam AMS','Berlin BER','Bilbao BIO','Sevilla SVQ','Malaga AGP','Milano MXP','Zurich ZRH']},
+    {code:'FR',name:'Ryanair',origins:['London STN','Dublin DUB','Marseille MRS','Brussels CRL','Manchester MAN','Edinburgh EDI','Porto OPO','Cracovia KRK','Budapest BUD','Napoles NAP']},
+    {code:'IB',name:'Iberia',origins:['Madrid MAD','Madrid MAD','Madrid MAD','Buenos Aires EZE','New York JFK','Bogota BOG']},
+    {code:'UX',name:'Air Europa',origins:['Madrid MAD','Palma PMI','Tenerife TFN','Miami MIA']},
+    {code:'LH',name:'Lufthansa',origins:['Frankfurt FRA','Munich MUC']},
+    {code:'AF',name:'Air France',origins:['Paris CDG','Lyon LYS']},
+    {code:'EW',name:'Eurowings',origins:['Dusseldorf DUS','Colonia CGN','Stuttgart STR']},
+    {code:'QR',name:'Qatar Airways',origins:['Doha DOH']},
+    {code:'TK',name:'Turkish Airlines',origins:['Istanbul IST']},
+    {code:'EK',name:'Emirates',origins:['Dubai DXB']},
+    {code:'W6',name:'Wizz Air',origins:['Varsovia WAW','Bucarest OTP','Sofia SOF']},
+    {code:'U2',name:'easyJet',origins:['London LGW','Paris CDG','Geneva GVA','Basel BSL','Bristol BRS']}
+  ] : [
+    {code:'IB',name:'Iberia',origins:['Barcelona BCN','Barcelona BCN','London LHR','New York JFK','Miami MIA','Mexico City MEX','Bogota BOG','Lima LIM','Buenos Aires EZE','Santiago SCL']},
+    {code:'UX',name:'Air Europa',origins:['Barcelona BCN','Tenerife TFN','Palma PMI','Paris CDG','London LGW','Cancun CUN','Santo Domingo SDQ']},
+    {code:'FR',name:'Ryanair',origins:['Barcelona BCN','Valencia VLC','Malaga AGP','London STN','Dublin DUB','Roma CIA','Berlin BER']},
+    {code:'VY',name:'Vueling',origins:['Barcelona BCN','Sevilla SVQ','Bilbao BIO','Paris ORY','Roma FCO','Amsterdam AMS']},
+    {code:'LH',name:'Lufthansa',origins:['Frankfurt FRA','Munich MUC']},
+    {code:'AF',name:'Air France',origins:['Paris CDG']},
+    {code:'BA',name:'British Airways',origins:['London LHR']},
+    {code:'AA',name:'American Airlines',origins:['Miami MIA','New York JFK','Dallas DFW']},
+    {code:'EK',name:'Emirates',origins:['Dubai DXB']},
+    {code:'QR',name:'Qatar Airways',origins:['Doha DOH']}
+  ];
+
+  const terminals = airport === 'BCN' ? ['T1','T2'] : ['T1','T2','T3','T4'];
+  const statuses = ['landed','landed','landed','landed','expected','expected','expected','delayed','expected','landed'];
+  const flights = [];
+
+  // Generar vuelos desde hace 2h hasta +3h
+  for(let i = 0; i < 35; i++) {
+    const airline = airlines[Math.floor(Math.random() * airlines.length)];
+    const origin = airline.origins[Math.floor(Math.random() * airline.origins.length)];
+    const flightNum = airline.code + (1000 + Math.floor(Math.random() * 8000));
+    const minutesOffset = Math.floor(Math.random() * 300) - 120; // -2h to +3h
+    const scheduledTime = new Date(now.getTime() + minutesOffset * 60000);
+    const status = minutesOffset < -10 ? 'landed' : (minutesOffset < 0 ? (Math.random()>0.5?'landed':'expected') : statuses[Math.floor(Math.random() * statuses.length)]);
+    const terminal = terminals[Math.floor(Math.random() * terminals.length)];
+    const delayMin = status === 'delayed' ? Math.floor(Math.random() * 45) + 10 : 0;
+
+    flights.push({
+      flight: flightNum,
+      airline: airline.name,
+      origin: origin.split(' ')[0],
+      originCode: origin.split(' ')[1] || origin.substring(0,3).toUpperCase(),
+      scheduled: scheduledTime.toISOString(),
+      estimated: delayMin ? new Date(scheduledTime.getTime() + delayMin*60000).toISOString() : scheduledTime.toISOString(),
+      status: status,
+      terminal: terminal,
+      delay: delayMin
+    });
+  }
+
+  // Ordenar por hora estimada
+  flights.sort((a,b) => new Date(a.estimated) - new Date(b.estimated));
+  return flights;
+}
+
+// ============================================================
+// FETCH DE DATOS
+// ============================================================
+async function loadFlights() {
+  const listEl = document.getElementById('flightList');
+  listEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Cargando vuelos...</p></div>';
+
+  try {
+    if(DEMO_MODE) {
+      // Simular delay de red
+      await new Promise(r => setTimeout(r, 800));
+      flightsData = generateDemoFlights(currentAirport);
+    } else {
+      const res = await fetch(`${WORKER_URL}/arrivals?airport=${currentAirport}`);
+      if(!res.ok) throw new Error('Error del servidor');
+      const data = await res.json();
+      flightsData = data.flights || [];
+    }
+    renderFlights();
+    updateStats();
+    updateTimestamp();
+  } catch(e) {
+    console.error(e);
+    // Fallback a demo en caso de error
+    flightsData = generateDemoFlights(currentAirport);
+    renderFlights();
+    updateStats();
+    updateTimestamp();
+  }
+}
+
+// ============================================================
+// RENDERIZAR VUELOS
+// ============================================================
+function renderFlights() {
+  const listEl = document.getElementById('flightList');
+  let filtered = currentTerminal === 'all' ? flightsData : flightsData.filter(f => f.terminal === currentTerminal);
+
+  if(filtered.length === 0) {
+    listEl.innerHTML = '<div class="empty-state"><div class="icon">✈️</div><h3>Sin vuelos</h3><p>No hay vuelos programados para este filtro. Prueba con otra terminal.</p></div>';
+    return;
+  }
+
+  let html = '';
+  const now = new Date();
+
+  filtered.forEach(f => {
+    const est = new Date(f.estimated);
+    const sched = new Date(f.scheduled);
+    const timeStr = est.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+    const diffMin = Math.round((est - now) / 60000);
+
+    let statusClass = 'status-expected';
+    let statusText = 'Esperado';
+    if(f.status === 'landed') { statusClass = 'status-landed'; statusText = 'Aterrizado'; }
+    else if(f.status === 'delayed') { statusClass = 'status-delayed'; statusText = `Retrasado +${f.delay}min`; }
+    else if(f.status === 'cancelled') { statusClass = 'status-cancelled'; statusText = 'Cancelado'; }
+
+    let etaText = '';
+    if(f.status === 'expected' || f.status === 'delayed') {
+      if(diffMin > 0 && diffMin <= 120) etaText = `Llega en ${diffMin} min`;
+      else if(diffMin <= 0 && diffMin > -5) etaText = 'Llegando ahora';
+    }
+
+    html += `
+    <div class="flight-card">
+      <div class="flight-top">
+        <div>
+          <span class="flight-code">${f.flight}</span>
+          <span class="flight-airline"> · ${f.airline}</span>
+        </div>
+        <span class="flight-status ${statusClass}">${statusText}</span>
+      </div>
+      <div class="flight-mid">
+        <span class="flight-origin">${f.origin} (${f.originCode})</span>
+        <span class="flight-arrow">→</span>
+        <span class="flight-dest">${currentAirport}</span>
+      </div>
+      <div class="flight-bottom">
+        <div>
+          <div class="flight-time${f.status==='expected'||f.status==='delayed'?' time-blink':''}">${timeStr}</div>
+          ${etaText ? `<div class="flight-eta">${etaText}</div>` : ''}
+        </div>
+        <span class="flight-terminal">${f.terminal}</span>
+      </div>
+    </div>`;
+  });
+
+  listEl.innerHTML = html;
+}
+
+// ============================================================
+// ESTADISTICAS
+// ============================================================
+function updateStats() {
+  const now = new Date();
+  const oneHourLater = new Date(now.getTime() + 3600000);
+  const filtered = currentTerminal === 'all' ? flightsData : flightsData.filter(f => f.terminal === currentTerminal);
+
+  document.getElementById('statTotal').textContent = filtered.length;
+  document.getElementById('statNext').textContent = filtered.filter(f => {
+    const t = new Date(f.estimated);
+    return t >= now && t <= oneHourLater && f.status !== 'cancelled';
+  }).length;
+  document.getElementById('statLanded').textContent = filtered.filter(f => f.status === 'landed').length;
+  document.getElementById('statDelayed').textContent = filtered.filter(f => f.status === 'delayed').length;
+}
+
+function updateTimestamp() {
+  const now = new Date();
+  const str = now.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('lastUpdate').textContent = `Ultima actualizacion: ${str}`;
+}
+
+// ============================================================
+// INTERACCIONES
+// ============================================================
+function selectAirport(code) {
+  currentAirport = code;
+  currentTerminal = 'all';
+
+  document.querySelectorAll('.airport-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + code).classList.add('active');
+
+  // Actualizar terminales
+  const filterEl = document.getElementById('terminalFilter');
+  const terminals = code === 'BCN' ? ['T1','T2'] : ['T1','T2','T3','T4'];
+  let btns = '<div class="term-btn active" onclick="filterTerminal(\'all\')">Todas</div>';
+  terminals.forEach(t => btns += `<div class="term-btn" onclick="filterTerminal('${t}')">${t}</div>`);
+  filterEl.innerHTML = btns;
+
+  loadFlights();
+}
+
+function filterTerminal(term) {
+  currentTerminal = term;
+  document.querySelectorAll('.term-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderFlights();
+  updateStats();
+}
+
+function shareApp() {
+  const text = `Mira los vuelos llegando a ${currentAirport} en tiempo real. Herramienta gratis para taxistas:\n\nhttps://pau111000.github.io/Taxi360_WEB/llegadas.html`;
+  if(navigator.share) {
+    navigator.share({title:'LlegadasDay — Vuelos en tiempo real', text: text, url: window.location.href});
+  } else {
+    // Fallback: compartir por WhatsApp
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`,'_blank');
+  }
+}
+
+// ============================================================
+// INICIALIZAR
+// ============================================================
+loadFlights();
+
+// Auto-refresh cada 10 minutos
+setInterval(loadFlights, 600000);
+
+// Refresh al volver a la pestaña
+document.addEventListener('visibilitychange', () => {
+  if(!document.hidden) loadFlights();
+});
+</script>
+</body>
+</html>

@@ -25,6 +25,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/
+          cp public/llegadas.html _site/
           cp -r public/assets _site/assets
 
       - name: Upload artifact
