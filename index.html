@@ -393,6 +393,12 @@
       z-index: 10;
       overflow: hidden;
     }
+    /* Push ChatWith widget above the mobile fixed bottom bar */
+    @media (max-width: 1023px) {
+      .chatwith {
+        bottom: 72px !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen bg-dark-950 text-white overflow-x-hidden">
