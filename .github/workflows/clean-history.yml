@@ -1,0 +1,37 @@
+name: Clean commit history
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove Co-Authored-By from commit cff702c
+        run: |
+          git config user.name "pau111000"
+          git config user.email "pau111000@users.noreply.github.com"
+          
+          # Rewrite cff702c commit message without Co-Authored-By
+          git filter-branch --msg-filter '
+            if [ "$GIT_COMMIT" = "cff702cfeaa8af0797fcf864d9f0a390fc89a795" ]; then
+              sed "/Co-Authored-By/d" | sed "/^$/N;/^\n$/d"
+            else
+              cat
+            fi
+          ' -- --all
+          
+          git push --force origin main
+
+      - name: Delete this workflow file
+        run: |
+          git rm .github/workflows/clean-history.yml
+          git commit -m "Remove cleanup workflow"
+          git push origin main
