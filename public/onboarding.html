@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo funciona TaxiNeto360 — Guía paso a paso</title>
+  <meta name="description" content="Guía completa de TaxiNeto360: aprende paso a paso cómo registrarte, configurar tu perfil y usar las 15+ herramientas profesionales para taxistas.">
+  <meta name="theme-color" content="#070b14">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f' },
+            dark: { 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a',950:'#070b14' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    ::selection { background: rgba(251,191,36,0.3); color: #fff; }
+
+    .glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+
+    .step-line { position: absolute; left: 27px; top: 60px; bottom: -20px; width: 2px; background: linear-gradient(to bottom, rgba(251,191,36,0.4), rgba(251,191,36,0.05)); }
+
+    .step-card { transition: all 0.3s ease; }
+    .step-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
+
+    .tool-chip { transition: all 0.2s ease; }
+    .tool-chip:hover { transform: scale(1.05); background: rgba(251,191,36,0.15); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeUp 0.6s ease-out both; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #fbbf24, #f59e0b); z-index: 100; transition: width 0.15s ease; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950 text-white">
+
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-black/60 glass">
+    <div class="mx-auto max-w-5xl px-5 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <img src="assets/favicon.png" alt="Taxi360" class="w-8 h-8 rounded-lg">
+        <span class="font-bold text-white">TaxiNeto360</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="text-sm text-white/50 hover:text-white transition-colors hidden sm:block">Volver a la web</a>
+        <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank"
+          class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-400 to-brand-500 px-4 py-2 text-xs font-bold text-gray-900 hover:scale-105 transition-transform">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i> Descargar
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-28 pb-12 sm:pt-36 sm:pb-16">
+    <div class="mx-auto max-w-5xl px-5 text-center">
+      <div class="animate-fade-up">
+        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium text-brand-300">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Guía de inicio
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-5">
+          <span class="bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
+            Cómo funciona TaxiNeto360
+          </span>
+        </h1>
+        <p class="text-base sm:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed">
+          Desde la descarga hasta tu primera jornada. Te explicamos paso a paso todo lo que vas a encontrar dentro de la app.
+        </p>
+      </div>
+
+      <!-- Quick nav -->
+      <div class="mt-10 flex flex-wrap justify-center gap-2 animate-fade-up delay-200">
+        <a href="#paso-1" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">1. Descarga</a>
+        <a href="#paso-2" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">2. Registro</a>
+        <a href="#paso-3" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">3. Verificación</a>
+        <a href="#paso-4" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">4. Perfil</a>
+        <a href="#paso-5" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">5. Trial</a>
+        <a href="#paso-6" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">6. Dashboard</a>
+        <a href="#herramientas" class="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-white/60 hover:text-white hover:bg-white/[0.06] transition-all">7. Herramientas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="pb-20">
+    <div class="mx-auto max-w-3xl px-5">
+
+      <!-- PASO 1: DESCARGA -->
+      <div id="paso-1" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">1</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <div class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300 mb-3">EMPIEZA AQUÍ</div>
+            <h2 class="text-2xl font-extrabold text-white mb-3">Descarga la app</h2>
+            <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/10 border border-emerald-400/20">
+                  <i data-lucide="smartphone" class="w-6 h-6 text-emerald-300"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-white">Google Play Store</p>
+                  <p class="text-sm text-white/50">Disponible para Android</p>
+                </div>
+              </div>
+              <p class="text-sm text-white/55 leading-relaxed mb-4">
+                Busca <strong class="text-white/80">"TaxiNeto360"</strong> en Google Play o pulsa el enlace de descarga directa. La app pesa poco y se instala en segundos.
+              </p>
+              <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank"
+                class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-400 to-brand-500 px-5 py-3 text-sm font-bold text-gray-900 hover:scale-105 transition-transform">
+                <i data-lucide="download" class="w-4 h-4"></i> Descargar en Google Play
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 2: REGISTRO -->
+      <div id="paso-2" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">2</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">Crea tu cuenta</h2>
+            <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+              <p class="text-sm text-white/55 leading-relaxed mb-5">
+                Al abrir la app por primera vez, verás la pantalla de registro. Pulsa <strong class="text-white/80">"¿No tienes cuenta? Regístrate"</strong>.
+              </p>
+
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg bg-brand-400/10 border border-brand-400/20 shrink-0">
+                    <i data-lucide="check-square" class="w-4 h-4 text-brand-300"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white/90">Acepta los Términos y Política de Privacidad</p>
+                    <p class="text-xs text-white/45 mt-0.5">Es obligatorio para continuar</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg bg-brand-400/10 border border-brand-400/20 shrink-0">
+                    <i data-lucide="mail" class="w-4 h-4 text-brand-300"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white/90">Introduce tu email</p>
+                    <p class="text-xs text-white/45 mt-0.5">Usa un email real — lo necesitarás para verificar</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg bg-brand-400/10 border border-brand-400/20 shrink-0">
+                    <i data-lucide="lock" class="w-4 h-4 text-brand-300"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white/90">Crea una contraseña segura</p>
+                    <p class="text-xs text-white/45 mt-0.5">Mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial (!@#$%^&*)</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg bg-violet-400/10 border border-violet-400/20 shrink-0">
+                    <i data-lucide="ticket" class="w-4 h-4 text-violet-300"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white/90">Código de referido <span class="text-white/40">(opcional)</span></p>
+                    <p class="text-xs text-white/45 mt-0.5">Si alguien te invitó, introduce su código aquí para que ambos ganéis días gratis</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-xl border border-brand-400/15 bg-brand-400/5 p-4">
+                <p class="text-xs text-white/60"><i data-lucide="info" class="w-3.5 h-3.5 inline text-brand-300 mr-1"></i> Pulsa <strong class="text-white/80">"Registrarme"</strong> y tu cuenta se creará al instante.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 3: VERIFICACIÓN -->
+      <div id="paso-3" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">3</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">Verifica tu identidad</h2>
+            <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+              <p class="text-sm text-white/55 leading-relaxed mb-5">
+                Para proteger tu cuenta, necesitamos dos verificaciones rápidas:
+              </p>
+
+              <!-- Sub-step A -->
+              <div class="rounded-xl border border-sky-400/15 bg-sky-400/5 p-5 mb-4">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-400/15">
+                    <span class="text-xs font-bold text-sky-300">A</span>
+                  </div>
+                  <h3 class="text-sm font-bold text-white">Verificación de email</h3>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">
+                  Recibirás un email de verificación. Abre tu bandeja de entrada, pulsa el enlace y vuelve a la app. Pulsa <strong class="text-white/70">"Ya verifiqué"</strong>.
+                </p>
+              </div>
+
+              <!-- Sub-step B -->
+              <div class="rounded-xl border border-violet-400/15 bg-violet-400/5 p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/15">
+                    <span class="text-xs font-bold text-violet-300">B</span>
+                  </div>
+                  <h3 class="text-sm font-bold text-white">Verificación por SMS (2FA)</h3>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">
+                  Introduce tu número de teléfono con el prefijo de tu país (ej: +34 para España). Recibirás un código por SMS. Introdúcelo y listo. Tu cuenta queda protegida con doble verificación.
+                </p>
+              </div>
+
+              <div class="mt-5 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-4">
+                <p class="text-xs text-white/60"><i data-lucide="shield-check" class="w-3.5 h-3.5 inline text-emerald-300 mr-1"></i> <strong class="text-white/80">¿Por qué 2FA?</strong> Para que nadie pueda acceder a tus datos aunque conozca tu contraseña. Tu información financiera merece esta protección.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 4: PERFIL -->
+      <div id="paso-4" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">4</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">Configura tu perfil</h2>
+            <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+              <p class="text-sm text-white/55 leading-relaxed mb-5">
+                Un asistente de 2 pasos te ayudará a configurar tu perfil. Solo tardas 10 segundos:
+              </p>
+
+              <!-- Step 1 of 2 -->
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-[10px] font-bold text-brand-300 bg-brand-400/10 border border-brand-400/20 rounded-full px-2.5 py-0.5">PASO 1 DE 2</span>
+                  <span class="text-sm font-semibold text-white/70">¿Cómo vas a usar TaxiNeto360?</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div class="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 hover:border-brand-400/30 transition-colors">
+                    <div class="flex items-center gap-3 mb-2">
+                      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-400/10"><i data-lucide="user" class="w-5 h-5 text-brand-300"></i></div>
+                      <div>
+                        <p class="text-sm font-bold text-white">Conductor</p>
+                        <p class="text-[11px] text-white/45">Autónomo (1 licencia) o asalariado</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 hover:border-violet-400/30 transition-colors">
+                    <div class="flex items-center gap-3 mb-2">
+                      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-400/10"><i data-lucide="users" class="w-5 h-5 text-violet-300"></i></div>
+                      <div>
+                        <p class="text-sm font-bold text-white">Flota / Gestor</p>
+                        <p class="text-[11px] text-white/45">Pequeño autónomo (hasta 3 licencias)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 of 2 -->
+              <div>
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-[10px] font-bold text-brand-300 bg-brand-400/10 border border-brand-400/20 rounded-full px-2.5 py-0.5">PASO 2 DE 2</span>
+                  <span class="text-sm font-semibold text-white/70">¿Dónde operas?</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div class="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 hover:border-orange-400/30 transition-colors">
+                    <div class="flex items-center gap-3">
+                      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-400/10"><i data-lucide="map-pin" class="w-5 h-5 text-orange-300"></i></div>
+                      <div>
+                        <p class="text-sm font-bold text-white">Barcelona</p>
+                        <p class="text-[11px] text-white/45">Aeropuerto El Prat · IMET · BCN</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 hover:border-purple-400/30 transition-colors">
+                    <div class="flex items-center gap-3">
+                      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-400/10"><i data-lucide="map-pin" class="w-5 h-5 text-purple-300"></i></div>
+                      <div>
+                        <p class="text-sm font-bold text-white">Madrid</p>
+                        <p class="text-[11px] text-white/45">Aeropuerto Barajas · EMT · MAD</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 5: TRIAL -->
+      <div id="paso-5" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400/20 to-emerald-400/5 border border-emerald-400/20 z-10">
+            <span class="text-xl font-extrabold text-emerald-300">5</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">30 días gratis activados</h2>
+            <div class="step-card rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.03] glass p-6">
+              <div class="flex items-center gap-4 mb-5">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-400/10 border border-emerald-400/20">
+                  <span class="text-3xl">🎁</span>
+                </div>
+                <div>
+                  <p class="text-lg font-extrabold text-white">Tu prueba gratuita empieza ya</p>
+                  <p class="text-sm text-emerald-300 font-semibold">30 días de acceso total. Sin pagar nada.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                <div class="text-center rounded-xl border border-emerald-400/10 bg-emerald-400/5 p-3">
+                  <p class="text-2xl font-extrabold text-emerald-300">30</p>
+                  <p class="text-[11px] text-white/50">Días gratis</p>
+                </div>
+                <div class="text-center rounded-xl border border-brand-400/10 bg-brand-400/5 p-3">
+                  <p class="text-2xl font-extrabold text-brand-300">15+</p>
+                  <p class="text-[11px] text-white/50">Herramientas</p>
+                </div>
+                <div class="text-center rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                  <p class="text-2xl font-extrabold text-white/80">0€</p>
+                  <p class="text-[11px] text-white/50">Sin tarjeta</p>
+                </div>
+                <div class="text-center rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                  <p class="text-2xl font-extrabold text-white/80">4</p>
+                  <p class="text-[11px] text-white/50">Formatos export</p>
+                </div>
+              </div>
+
+              <p class="text-sm text-white/50 leading-relaxed">
+                Sin introducir tarjeta de crédito. Sin compromiso. Cuando terminen los 30 días, podrás elegir el plan que mejor se adapte a ti: <strong class="text-white/70">Individual (9,99€/mes)</strong> o <strong class="text-white/70">Flota (59,99€/mes)</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 6: DASHBOARD -->
+      <div id="paso-6" class="relative mb-16 scroll-mt-24">
+        <div class="step-line"></div>
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">6</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">Tu panel principal — La Jornada</h2>
+            <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+              <p class="text-sm text-white/55 leading-relaxed mb-5">
+                Esta es la pantalla principal de TaxiNeto360. Aquí registras tu jornada diaria y accedes a todas las herramientas.
+              </p>
+
+              <h3 class="text-sm font-bold text-white/70 mb-3">Lo que puedes registrar en cada jornada:</h3>
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Horas trabajadas
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Kilómetros
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Importe taxímetro
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Pagos con VISA
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Propinas
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Gastos
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Fotos de evidencia
+                </div>
+                <div class="flex items-center gap-2 text-sm text-white/55">
+                  <i data-lucide="circle-check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> Neto real
+                </div>
+              </div>
+
+              <div class="rounded-xl border border-brand-400/15 bg-brand-400/5 p-4">
+                <p class="text-xs text-white/60"><i data-lucide="lightbulb" class="w-3.5 h-3.5 inline text-brand-300 mr-1"></i> Desde este panel puedes acceder a las <strong class="text-white/80">15+ herramientas</strong> pulsando en el menú de la parte superior.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 7: HERRAMIENTAS -->
+      <div id="herramientas" class="relative mb-16 scroll-mt-24">
+        <div class="flex items-start gap-5">
+          <div class="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20 z-10">
+            <span class="text-xl font-extrabold text-brand-300">7</span>
+          </div>
+          <div class="flex-1 pt-1">
+            <h2 class="text-2xl font-extrabold text-white mb-3">Tus 15+ herramientas</h2>
+            <p class="text-sm text-white/55 leading-relaxed mb-5">
+              Desde el panel principal accedes a todas. Aquí te explicamos qué hace cada una:
+            </p>
+          </div>
+        </div>
+
+        <!-- Tools detail grid -->
+        <div class="ml-0 sm:ml-[76px] space-y-4">
+
+          <!-- CONTROL DE JORNADA -->
+          <div class="mb-2">
+            <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider mb-3">Control de tu jornada</h3>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">✈️</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">LlegadasDay!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Consulta en tiempo real todos los vuelos que aterrizan en el aeropuerto de Barcelona (BCN) y Madrid (MAD). Organizado por bloques horarios de 05:00h a 05:00h del día siguiente. Incluye estado del vuelo, terminal y hora estimada. Ideal para posicionarte en la parada del aeropuerto antes de que lleguen los pasajeros.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🚕</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">TarifaGo!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Calcula el precio estimado de una carrera según la normativa vigente del taxi de Barcelona. Detecta la tarifa aplicable (urbana/interurbana), añade suplementos automáticamente, muestra el tráfico en tiempo real y estima el tiempo de llegada. Compatible con Google Maps y Waze para iniciar la navegación directamente.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">📊</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">KPI Intelligence</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Analiza tu rendimiento real: ingresos por hora, media de servicios, tendencias semanales y mensuales. Te dice cómo estás rindiendo de verdad con datos claros, no con sensaciones.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">💵</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Neto Apps</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Calcula cuánto te queda limpio después de las comisiones de las apps de movilidad (Uber, Cabify, etc.). Introduce lo que has facturado con cada app y te muestra el neto real al céntimo.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">📋</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Historial</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Consulta el registro completo de todas tus jornadas anteriores. Busca cualquier día en segundos y revisa los detalles: horas, importes, gastos, fotos adjuntas y neto final.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTELIGENCIA DE CIUDAD -->
+          <div class="mt-8 mb-2">
+            <h3 class="text-xs font-bold text-emerald-300 uppercase tracking-wider mb-3">Inteligencia de ciudad</h3>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">📅</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">MiCalendario!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Tu calendario de descansos y turnos de taxi sincronizado con tu ciudad y licencia. Saber qué días te toca descansar sin tener que calcularlo nunca más.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-emerald-400/10 bg-emerald-400/[0.02] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🎪</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">MisEventos!</h4>
+                  <span class="text-[9px] font-bold text-emerald-300 bg-emerald-400/10 rounded-full px-2 py-0.5">GRATIS</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Consulta qué eventos generan demanda de taxi HOY en tu ciudad: conciertos, partidos de fútbol, ferias, congresos... Incluye la previsión del tiempo y un filtro por nivel de impacto (alto, medio, bajo). Datos de Open Data Barcelona y datos.madrid.es.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-emerald-400/10 bg-emerald-400/[0.02] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">📍</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">MiCiudad!</h4>
+                  <span class="text-[9px] font-bold text-emerald-300 bg-emerald-400/10 rounded-full px-2 py-0.5">GRATIS</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Todos los puntos de interés que un taxista necesita conocer: hospitales, estaciones, aeropuertos, monumentos, museos, recintos deportivos, comisarías, universidades, lugares de culto y más. Basado en el temario oficial del examen de credencial de taxi. Con buscador y navegación GPS integrada (Google Maps / Waze).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">⛽</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">MiGasolinera!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Encuentra las gasolineras más baratas cerca de ti en tiempo real. Datos oficiales del Ministerio de Industria. Filtra por radio de distancia y visualiza en mapa o en lista. Ahorra en cada depósito.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRANSPORTE Y TRÁFICO -->
+          <div class="mt-8 mb-2">
+            <h3 class="text-xs font-bold text-sky-300 uppercase tracking-wider mb-3">Transporte y tráfico</h3>
+          </div>
+
+          <div class="step-card rounded-2xl border border-sky-400/10 bg-sky-400/[0.02] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🚆</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Trenes!</h4>
+                  <span class="text-[9px] font-bold text-sky-300 bg-sky-400/10 rounded-full px-2 py-0.5">BCN</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Llegadas de trenes a Barcelona Sants en tiempo real. Organizado por bloques horarios con datos de Renfe: hora de llegada, tipo de servicio (AVE, Alvia, Regional...) y procedencia. Pasajeros con maletas que necesitan taxi.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-sky-400/10 bg-sky-400/[0.02] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🚢</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Barcos!</h4>
+                  <span class="text-[9px] font-bold text-sky-300 bg-sky-400/10 rounded-full px-2 py-0.5">BCN</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Cruceros y ferris que atracan en el Puerto de Barcelona. Datos oficiales de Open Data del Puerto: terminal, naviera, hora de llegada y bloques horarios. Miles de turistas desembarcando cada día.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🚦</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Tráfico!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Estado del tráfico en tiempo real en Barcelona y Madrid: fluido, denso o congestionado. Resumen visual, auto-refresco cada 5 minutos. Lo sabes antes de salir de la parada.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">📡</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Radares!</h4>
+                  <span class="text-[9px] font-bold text-brand-300 bg-brand-400/10 rounded-full px-2 py-0.5">PREMIUM</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Radares fijos y móviles en tiempo real. Conduce tranquilo sabiendo dónde están los controles de velocidad en tu zona.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- UTILIDADES -->
+          <div class="mt-8 mb-2">
+            <h3 class="text-xs font-bold text-violet-300 uppercase tracking-wider mb-3">Utilidades</h3>
+          </div>
+
+          <div class="step-card rounded-2xl border border-emerald-400/10 bg-emerald-400/[0.02] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">🌍</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Tradúceme!</h4>
+                  <span class="text-[9px] font-bold text-emerald-300 bg-emerald-400/10 rounded-full px-2 py-0.5">GRATIS</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Traductor bidireccional instantáneo con reconocimiento de voz: español ↔ inglés, francés y alemán. Pulsa el botón del micrófono, habla, y la app traduce y reproduce la traducción en voz alta. Funciona offline gracias a Google ML Kit. Ideal para comunicarte con turistas sin problemas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0">👥</span>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="font-bold text-white">Conductores</h4>
+                  <span class="text-[9px] font-bold text-violet-300 bg-violet-400/10 rounded-full px-2 py-0.5">FLOTA</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed">Si eres gestor de flota, desde aquí invitas a conductores por email, consultas su historial de jornadas, ves sus KPIs individuales y gestionas todo desde un dashboard centralizado. Los conductores aceptan la invitación y quedan vinculados a tu flota.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXTRAS -->
+          <div class="mt-8 mb-2">
+            <h3 class="text-xs font-bold text-white/50 uppercase tracking-wider mb-3">Y además</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
+              <span class="text-2xl">📸</span>
+              <p class="text-sm font-semibold text-white mt-2">Evidencias</p>
+              <p class="text-xs text-white/45 mt-1">Fotos de VISA y taxímetro como prueba real</p>
+            </div>
+            <div class="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
+              <span class="text-2xl">🧾</span>
+              <p class="text-sm font-semibold text-white mt-2">Liquidaciones</p>
+              <p class="text-xs text-white/45 mt-1">Ingresos netos calculados automáticamente</p>
+            </div>
+            <div class="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
+              <span class="text-2xl">📥</span>
+              <p class="text-sm font-semibold text-white mt-2">Exportación</p>
+              <p class="text-xs text-white/45 mt-1">CSV, PDF, Excel y HTML para tu gestoría</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section class="pb-20">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="ml-0 sm:ml-[76px]">
+        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06]">
+              <i data-lucide="settings" class="w-6 h-6 text-white/60"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">Ajustes</h3>
+              <p class="text-sm text-white/50">Personaliza tu perfil cuando quieras</p>
+            </div>
+          </div>
+          <p class="text-sm text-white/50 leading-relaxed mb-4">Desde Ajustes puedes completar tu perfil profesional en cualquier momento:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm text-white/50">
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Nombre</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Tipo de conductor</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Empresa / CIF</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> N.º de licencia</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Ciudad</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Suscripción</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Bloqueo por PIN</div>
+            <div class="flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-white/30 shrink-0"></i> Programa afiliados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="pb-20">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="rounded-2xl border border-brand-400/20 bg-gradient-to-br from-brand-400/[0.06] to-transparent glass p-8 sm:p-10 text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+          ¿Listo para probarlo?
+        </h2>
+        <p class="text-base text-white/50 mb-6 max-w-lg mx-auto">
+          30 días gratis. 15+ herramientas. Sin tarjeta de crédito.<br>Descarga TaxiNeto360 y empieza a controlar tu jornada hoy.
+        </p>
+        <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank"
+          class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-brand-400 to-brand-500 px-8 py-4 text-sm font-bold text-gray-900 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:scale-105 transition-all">
+          <i data-lucide="download" class="w-5 h-5"></i> Descargar en Google Play
+        </a>
+        <p class="mt-4 text-xs text-white/30">
+          <a href="index.html" class="hover:text-white/50 transition-colors">Volver a la web principal</a> ·
+          <a href="mailto:taxi360barcelona@gmail.com" class="hover:text-white/50 transition-colors">Contacto</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/[0.06] py-8">
+    <div class="mx-auto max-w-5xl px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-white/30">© 2026 Taxi360. Todos los derechos reservados.</p>
+      <a href="index.html" class="text-sm text-white/30 hover:text-white/60 transition-colors">Volver a taxi360.com</a>
+    </div>
+  </footer>
+
+  <!-- Lucide icons init -->
+  <script>lucide.createIcons();</script>
+
+  <!-- Progress bar script -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+    });
+  </script>
+
+</body>
+</html>
