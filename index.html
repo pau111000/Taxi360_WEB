@@ -1,1391 +1,1446 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Taxi360 — TaxiNeto360 | Gestión profesional del taxi</title>
-  <meta name="description" content="TaxiNeto360: la app de gestión integral para taxistas. Liquidaciones netas, LlegadasDay!, TarifaGo!, KPI Intelligence, exportación CSV/PDF/Excel/HTML. Prueba gratis.">
-  <meta name="theme-color" content="#070b14">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          },
-          colors: {
-            brand: { 50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f' },
-            dark: { 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a',950:'#070b14' },
-            accent: { 300: '#2196f3', 400: '#1976d2', 500: '#1565c0' }
-          }
-        }
-      }
-    }
-  </script>
+  <meta name="description" content="TaxiNeto360: la app de gestión profesional para taxistas. LlegadasDay, TarifaGo, KPI Intelligence y 14+ herramientas. 30 días gratis." />
+  <meta property="og:title" content="TaxiNeto360 — Gestión profesional del taxi" />
+  <meta property="og:description" content="Una sola app con todo lo que necesitas para saber cuánto ganas de verdad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
-    :root { color-scheme: dark; }
-    * { scrollbar-width: thin; scrollbar-color: rgba(251,191,36,0.3) transparent; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'Inter', system-ui, sans-serif; position: relative; }
-    ::selection { background: rgba(251,191,36,0.3); color: #fff; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ANIMATED BACKGROUND PARTICLES */
-    .particles-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+    :root {
+      --gold: #C8A84E;
+      --gold-light: #E2C97A;
+      --gold-dim: rgba(200,168,78,0.15);
+      --gold-border: rgba(200,168,78,0.25);
+      --black: #080808;
+      --surface: #0f0f0f;
+      --surface2: #141414;
+      --surface3: #1a1a1a;
+      --text: #f0ede8;
+      --text-dim: rgba(240,237,232,0.55);
+      --text-faint: rgba(240,237,232,0.3);
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(251,191,36,0.4);
-      border-radius: 50%;
-      animation: float-up 8s infinite ease-in;
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    @keyframes float-up {
-      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-      100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 2px; }
+
+    /* ── SELECTION ── */
+    ::selection { background: var(--gold-dim); color: var(--gold-light); }
+
+    /* ── UTILITIES ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .gold { color: var(--gold); }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      color: var(--gold); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+    }
+    .tag-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #0a0800;
+      font-weight: 700; font-size: 14px; letter-spacing: 0.02em;
+      padding: 13px 24px; border-radius: 100px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,168,78,0.3); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--gold-border); color: var(--text);
+      font-weight: 500; font-size: 14px;
+      padding: 12px 24px; border-radius: 100px;
+      cursor: pointer; text-decoration: none; background: transparent;
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
     }
 
-    /* DOT GRID OVERLAY */
-    .dot-grid-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-      z-index: 1;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(200,168,78,0.08);
+      transition: all 0.3s ease;
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+      font-weight: 800; font-size: 17px; letter-spacing: -0.02em;
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px; background: var(--gold);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-dim); font-size: 13.5px; font-weight: 500;
+      text-decoration: none; padding: 6px 12px; border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .nav-badge {
+      font-size: 11px; font-weight: 600; color: var(--gold);
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--text); margin: 4px 0; transition: 0.3s; }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-badge { display: none; }
+      .hamburger { display: block; }
     }
 
-    /* GRADIENT MESH ORBS */
-    @keyframes pulse-drift-1 {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.08; }
-      50% { transform: translate(30px, -30px) scale(1.1); opacity: 0.12; }
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
     }
-
-    @keyframes pulse-drift-2 {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.06; }
-      50% { transform: translate(-40px, 20px) scale(1.15); opacity: 0.1; }
+    .hero-glow {
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(200,168,78,0.12) 0%, transparent 70%);
     }
-
-    /* TEXT & TYPOGRAPHY */
-    .text-gradient-gold { background: linear-gradient(135deg, #fde68a 0%, #fbbf24 50%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .text-gradient-white { background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.7) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    /* GLASS EFFECT ENHANCED */
-    .glass {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.06);
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(200,168,78,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(200,168,78,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center top, black 0%, transparent 70%);
     }
-
-    .glass::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(251,191,36,0.3), transparent);
-      opacity: 0;
-      border-radius: inherit;
-      transition: opacity 0.4s ease;
+    .hero-inner {
+      max-width: 1120px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-
-    .glass:hover::before {
-      opacity: 1;
+    .hero-eyebrow { margin-bottom: 24px; }
+    .hero-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 20px; color: var(--text);
     }
-
-    .glass:hover {
-      border-color: rgba(251,191,36,0.15);
-      box-shadow: inset 0 0 30px rgba(251,191,36,0.05), 0 25px 60px rgba(0,0,0,0.4);
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 17px; color: var(--text-dim); line-height: 1.7;
+      margin-bottom: 36px; max-width: 460px;
     }
+    .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-trust {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text-faint); font-weight: 500;
+    }
+    .trust-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
 
-    /* CARD HOVER ENHANCEMENTS */
-    .card-hover {
-      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    /* hero phone mockup */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
       position: relative;
     }
+    .phone-wrap {
+      position: relative; display: flex; justify-content: center;
+    }
+    .phone-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 300px; height: 400px; pointer-events: none;
+      background: radial-gradient(ellipse, rgba(200,168,78,0.2) 0%, transparent 70%);
+      filter: blur(40px);
+    }
+    .phone-frame {
+      width: 260px; background: var(--surface2);
+      border: 1px solid var(--gold-border);
+      border-radius: 36px; padding: 12px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04),
+                  0 40px 80px rgba(0,0,0,0.6),
+                  inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative; z-index: 1;
+    }
+    .phone-screen {
+      background: var(--surface3); border-radius: 28px; overflow: hidden;
+      aspect-ratio: 9/19.5; padding: 20px 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .phone-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .phone-app-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .phone-badge-sm {
+      font-size: 9px; font-weight: 700; background: var(--gold-dim);
+      border: 1px solid var(--gold-border); color: var(--gold);
+      padding: 3px 8px; border-radius: 100px;
+    }
+    .phone-stat-row { display: flex; gap: 8px; }
+    .phone-stat {
+      flex: 1; background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 12px 10px;
+    }
+    .phone-stat-val { font-size: 18px; font-weight: 800; color: var(--text); }
+    .phone-stat-val .phone-gold { color: var(--gold); }
+    .phone-stat-lbl { font-size: 9px; color: var(--text-faint); font-weight: 500; margin-top: 2px; }
+    .phone-card {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 12px;
+    }
+    .phone-card-title { font-size: 10px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .phone-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .phone-bar-lbl { font-size: 9px; color: var(--text-faint); width: 30px; }
+    .phone-bar-track { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; }
+    .phone-bar-fill { height: 4px; background: var(--gold); border-radius: 2px; }
+    .phone-bar-val { font-size: 9px; color: var(--gold); font-weight: 600; width: 28px; text-align: right; }
+    .phone-tool-row { display: flex; gap: 6px; }
+    .phone-tool {
+      flex: 1; background: rgba(200,168,78,0.06); border: 1px solid var(--gold-border);
+      border-radius: 8px; padding: 8px 6px; text-align: center;
+    }
+    .phone-tool-icon { font-size: 14px; }
+    .phone-tool-lbl { font-size: 7.5px; color: var(--text-faint); margin-top: 3px; }
 
-    .card-hover:hover {
-      transform: translateY(-6px);
-      border-color: rgba(251,191,36,0.2);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 40px rgba(251,191,36,0.08);
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .phone-frame { width: 220px; }
     }
 
-    /* PRICING CARDS GLOW */
-    .pricing-popular {
-      position: relative;
-      border-color: rgba(251,191,36,0.3) !important;
-      background: linear-gradient(180deg, rgba(251,191,36,0.08) 0%, rgba(251,191,36,0.02) 100%) !important;
-      animation: pricing-pulse-gold 3s ease-in-out infinite;
+    /* ── STATS ── */
+    .stats-bar {
+      padding: 0 24px;
+      border-top: 1px solid rgba(200,168,78,0.08);
+      border-bottom: 1px solid rgba(200,168,78,0.08);
+    }
+    .stats-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      padding: 32px 0;
+    }
+    .stat-item {
+      text-align: center; padding: 16px;
+      border-right: 1px solid rgba(200,168,78,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 36px; font-weight: 900; line-height: 1;
+      color: var(--gold); letter-spacing: -0.03em;
+      font-family: 'DM Serif Display', serif;
+    }
+    .stat-suffix { font-size: 22px; }
+    .stat-label { font-size: 12px; color: var(--text-faint); margin-top: 6px; font-weight: 500; }
+
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
     }
 
-    .pricing-popular::before {
-      content:'';
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      padding:1px;
-      background:linear-gradient(180deg,rgba(251,191,36,0.4),transparent 60%);
-      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      pointer-events:none;
+    /* ── PROBLEM ── */
+    .section { padding: 100px 24px; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub { font-size: 16px; color: var(--text-dim); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      background: rgba(200,168,78,0.1); border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid rgba(200,168,78,0.12);
+    }
+    .problem-card {
+      background: var(--surface); padding: 40px 32px;
+      transition: background 0.2s;
+    }
+    .problem-card:hover { background: var(--surface2); }
+    .problem-card-icon {
+      font-size: 28px; margin-bottom: 20px; display: block;
+    }
+    .problem-card-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .problem-card-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .problem-card-text { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+    @media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; } }
+
+    /* ── FEATURES ── */
+    .features-intro { text-align: center; margin-bottom: 64px; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.04); border-radius: var(--radius-lg);
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 2px;
+    }
+    .feature-card {
+      background: var(--surface); padding: 32px 28px;
+      transition: background 0.2s; position: relative; overflow: hidden;
+    }
+    .feature-card:hover { background: var(--surface2); }
+    .feature-card.premium::before {
+      content: 'PREMIUM';
+      position: absolute; top: 16px; right: 16px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); background: var(--gold-dim);
+      border: 1px solid var(--gold-border); padding: 3px 8px; border-radius: 100px;
+    }
+    .feature-card.fleet::before {
+      content: 'FLOTA';
+      position: absolute; top: 16px; right: 16px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      color: #a78bfa; background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25); padding: 3px 8px; border-radius: 100px;
+    }
+    .feature-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .feature-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+    .features-extras {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.04); border-radius: var(--radius);
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.06);
+    }
+    .extra-card {
+      background: var(--surface); padding: 24px 22px;
+      transition: background 0.2s;
+    }
+    .extra-card:hover { background: var(--surface2); }
+    .extra-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+    .extra-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .extra-desc { font-size: 12.5px; color: var(--text-faint); line-height: 1.55; }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-extras { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .features-extras { grid-template-columns: 1fr; }
     }
 
-    @keyframes pricing-pulse-gold {
-      0%, 100% { box-shadow: 0 0 40px rgba(251,191,36,0.1), inset 0 0 20px rgba(251,191,36,0.03); }
-      50% { box-shadow: 0 0 60px rgba(251,191,36,0.2), inset 0 0 30px rgba(251,191,36,0.08); }
+    /* ── SCREENSHOTS ── */
+    .screenshots-section { padding: 100px 24px; overflow: hidden; }
+    .screenshots-scroll {
+      display: flex; gap: 16px; margin-top: 48px;
+      animation: scroll-x 40s linear infinite;
+      width: max-content;
+    }
+    @keyframes scroll-x {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .screenshots-scroll:hover { animation-play-state: paused; }
+    .screenshot-card {
+      width: 200px; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid rgba(200,168,78,0.12);
+      border-radius: var(--radius); overflow: hidden; padding: 12px;
+    }
+    .screenshot-screen {
+      background: var(--surface3); border-radius: 10px;
+      aspect-ratio: 9/18; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px; padding: 16px;
+    }
+    .screenshot-icon { font-size: 32px; }
+    .screenshot-title { font-size: 11px; font-weight: 600; color: var(--text-dim); text-align: center; }
+    .screenshot-label { font-size: 10px; color: var(--text-faint); text-align: center; padding: 10px 8px 2px; font-weight: 500; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .pricing-card {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg); padding: 36px 32px;
+      position: relative; transition: border-color 0.2s;
+    }
+    .pricing-card:hover { border-color: rgba(200,168,78,0.2); }
+    .pricing-card.featured {
+      border-color: var(--gold-border);
+      background: linear-gradient(135deg, var(--surface2) 0%, rgba(200,168,78,0.04) 100%);
+    }
+    .pricing-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: #0a0800;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pricing-name { font-size: 13px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 24px; }
+    .pricing-price {
+      margin-bottom: 8px;
+    }
+    .pricing-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px; font-weight: 400; line-height: 1; color: var(--text);
+    }
+    .pricing-amount span { font-size: 20px; font-weight: 600; color: var(--text-dim); vertical-align: super; margin-right: 2px; }
+    .pricing-period { font-size: 13px; color: var(--text-faint); margin-bottom: 28px; }
+    .pricing-trial { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 28px; }
+    .pricing-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 28px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13.5px; color: var(--text-dim); line-height: 1.5;
+    }
+    .pricing-features li::before {
+      content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px;
     }
 
-    .pricing-influencer {
-      border-color: rgba(168,85,247,0.3) !important;
-      background: linear-gradient(180deg, rgba(168,85,247,0.08) 0%, rgba(168,85,247,0.02) 100%) !important;
-      animation: pricing-pulse-violet 3s ease-in-out infinite;
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+    /* ── SECURITY ── */
+    .security-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    .security-card {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 32px 28px;
+      transition: border-color 0.2s;
+    }
+    .security-card:hover { border-color: var(--gold-border); }
+    .security-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .security-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .security-text { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+    @media (max-width: 600px) { .security-grid { grid-template-columns: 1fr; } }
+
+    /* ── ABOUT ── */
+    .about-card {
+      background: var(--surface); border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg); padding: 64px 56px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,168,78,0.12) 0%, transparent 70%);
+    }
+    .about-title { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.2; margin-bottom: 20px; }
+    .about-text { font-size: 15px; color: var(--text-dim); line-height: 1.75; margin-bottom: 20px; }
+    .about-values { display: flex; flex-wrap: wrap; gap: 8px; }
+    .about-value {
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .about-stats { display: flex; flex-direction: column; gap: 16px; }
+    .about-stat {
+      background: var(--surface2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 24px 28px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .about-stat-num { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--gold); line-height: 1; flex-shrink: 0; }
+    .about-stat-label { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .about-card { grid-template-columns: 1fr; padding: 40px 28px; gap: 40px; }
     }
 
-    .pricing-influencer::before {
-      content:'';
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      padding:1px;
-      background:linear-gradient(180deg,rgba(168,85,247,0.4),transparent 60%);
-      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      pointer-events:none;
+    /* ── AFFILIATES ── */
+    .affiliates-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
     }
-
-    @keyframes pricing-pulse-violet {
-      0%, 100% { box-shadow: 0 0 40px rgba(168,85,247,0.1), inset 0 0 20px rgba(168,85,247,0.03); }
-      50% { box-shadow: 0 0 60px rgba(168,85,247,0.2), inset 0 0 30px rgba(168,85,247,0.08); }
+    .aff-left {}
+    .aff-steps { display: flex; flex-direction: column; gap: 0; }
+    .aff-step {
+      display: flex; gap: 20px; position: relative; padding-bottom: 32px;
     }
-
-    /* GLOW EFFECTS */
-    .glow-gold { box-shadow: 0 0 40px rgba(251,191,36,0.15), 0 0 80px rgba(251,191,36,0.05); }
-    .glow-blue { box-shadow: 0 0 40px rgba(33,150,243,0.1), 0 0 80px rgba(33,150,243,0.04); }
-
-    /* SHIMMER BUTTON */
-    .btn-shine {
-      position: relative;
-      overflow: hidden;
-      animation: button-glow 2s ease-in-out infinite;
+    .aff-step:last-child { padding-bottom: 0; }
+    .aff-step-line {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
     }
-
-    .btn-shine::after {
-      content:'';
-      position:absolute;
-      top:-50%;
-      left:-50%;
-      width:200%;
-      height:200%;
-      background:linear-gradient(to right,transparent,rgba(255,255,255,0.15),transparent);
-      transform:rotate(45deg);
-      animation:shimmer 3s linear infinite;
+    .aff-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      color: var(--gold); font-weight: 800; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
-    @keyframes shimmer {
-      0%{background-position:-200% 0}
-      100%{background-position:200% 0}
+    .aff-connector {
+      flex: 1; width: 1px; background: var(--gold-border); margin-top: 4px;
     }
-
-    @keyframes button-glow {
-      0%, 100% { box-shadow: 0 0 30px rgba(251,191,36,0.2); }
-      50% { box-shadow: 0 0 50px rgba(251,191,36,0.35); }
+    .aff-step:last-child .aff-connector { display: none; }
+    .aff-content { padding-top: 6px; }
+    .aff-step-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .aff-step-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+    .aff-card {
+      background: var(--surface); border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg); padding: 40px 32px;
+      display: flex; flex-direction: column; gap: 20px;
     }
-
-    /* ANIMATIONS */
-    @keyframes pulseGlow {
-      0%,100%{opacity:0.4}
-      50%{opacity:0.8}
+    .aff-benefit {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);
     }
+    .aff-benefit:last-child { border-bottom: none; padding-bottom: 0; }
+    .aff-benefit-icon { font-size: 24px; flex-shrink: 0; }
+    .aff-benefit-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .aff-benefit-text { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
 
-    @keyframes fadeUp {
-      from{opacity:0;transform:translateY(30px)}
-      to{opacity:1;transform:translateY(0)}
+    @media (max-width: 768px) { .affiliates-grid { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 2pz; }
+    .faq-item {
+      background: var(--surface); border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.06); overflow: hidden;
     }
-
-    @keyframes slideInRight {
-      from{opacity:0;transform:translateX(30px)}
-      to{opacity:1;transform:translateX(0)}
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 28px; text-align: left; color: var(--text);
+      font-size: 15px; font-weight: 600; font-family: inherit; gap: 16px;
+      transition: background 0.15s;
     }
-
-    @keyframes orbitRing {
-      0% { transform: scale(0.8); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: scale(1.2); opacity: 0; }
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    /* SCROLL REVEALS */
-    .animate-fade-up { animation: fadeUp 0.7s ease-out both; }
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
-
-    .reveal { opacity: 0; }
-    .reveal.revealed { animation: fadeUp 0.7s ease-out forwards; }
-
-    /* SECTION DIVIDERS */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(251,191,36,0.2) 20%, rgba(251,191,36,0.3) 50%, rgba(251,191,36,0.2) 80%, transparent);
-    }
-
-    .section-top-glow {
-      position: relative;
-    }
-
-    .section-top-glow::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 400px;
-      height: 1px;
-      background: radial-gradient(ellipse at center, rgba(251,191,36,0.3) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* FAQ ACCORDION */
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-      opacity: 0;
-      padding-bottom: 0;
-    }
-
-    .faq-answer.open {
-      max-height: 300px;
-      opacity: 1;
-      padding-bottom: 1.25rem;
-    }
-
+    .faq-question:hover { background: rgba(255,255,255,0.03); }
     .faq-chevron {
-      transition: transform 0.3s ease;
+      width: 20px; height: 20px; flex-shrink: 0;
+      color: var(--gold); transition: transform 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer-inner {
+      padding: 0 28px 24px;
+      font-size: 14px; color: var(--text-dim); line-height: 1.7;
     }
 
-    .faq-chevron.open {
-      transform: rotate(180deg);
+    /* ── CONTACT CTA ── */
+    .cta-block {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(200,168,78,0.06) 100%);
+      border: 1px solid var(--gold-border); border-radius: var(--radius-lg);
+      padding: 80px; text-align: center; position: relative; overflow: hidden;
     }
+    .cta-block::before {
+      content: ''; position: absolute; top: -150px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(200,168,78,0.15) 0%, transparent 70%);
+    }
+    .cta-title { font-family: 'DM Serif Display', serif; font-size: 40px; margin-bottom: 16px; position: relative; }
+    .cta-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 36px; position: relative; }
+    .cta-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #25D366; color: white;
+      font-weight: 700; font-size: 14px;
+      padding: 13px 24px; border-radius: 100px; text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-whatsapp:hover { background: #1da851; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
 
-    /* TOOL CARDS */
-    .tool-card {
-      position: relative;
-      overflow: hidden;
-    }
+    @media (max-width: 600px) { .cta-block { padding: 48px 24px; } }
 
-    .tool-card::after {
-      content:'';
-      position:absolute;
-      top:0;
-      right:0;
-      width:120px;
-      height:120px;
-      background:radial-gradient(circle at top right, rgba(251,191,36,0.08), transparent 70%);
-      pointer-events:none;
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid rgba(200,168,78,0.08);
     }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 15px; color: var(--text); text-decoration: none;
+    }
+    .footer-logo-icon {
+      width: 28px; height: 28px; background: var(--gold); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 13px; color: var(--text-faint); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-legal {
+      font-size: 12px; color: var(--text-faint);
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+    .footer-legal a { color: var(--text-faint); text-decoration: none; transition: color 0.15s; }
+    .footer-legal a:hover { color: var(--gold); }
 
-    /* HERO PHONE GLOW */
-    .phone-wrapper {
-      position: relative;
-      animation: phone-float 3s ease-in-out infinite;
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes phone-float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .phone-orbit {
-      position: absolute;
-      inset: -20px;
-      border: 1px solid rgba(251,191,36,0.15);
-      border-radius: 50%;
-      animation: orbitRing 3s ease-out infinite;
-    }
-
-    .badge-pulse {
-      animation: pulseDot 2s ease-in-out infinite;
-    }
-
-    /* COUNTER ANIMATION */
-    .counter {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-    }
-
-    .counter-glow {
-      position: relative;
-    }
-
-    .counter-glow::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      background: radial-gradient(circle, rgba(251,191,36,0.2), transparent);
-      border-radius: 50%;
-      opacity: 0;
-      animation: counter-glow-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes counter-glow-pulse {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
-
-    /* FOOTER GLOW */
-    .footer-top-glow {
-      position: relative;
-    }
-
-    .footer-top-glow::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 200px;
-      background: radial-gradient(ellipse at center, rgba(251,191,36,0.15), transparent);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* CONTENT WRAPPER */
-    .content-wrapper {
-      position: relative;
-      z-index: 10;
-    }
+    .animate { animation: fadeUp 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
   </style>
 </head>
-<body class="min-h-screen bg-dark-950 text-white overflow-x-hidden">
+<body>
 
-  <!-- ANIMATED BACKGROUND LAYERS -->
-  <div class="particles-bg" id="particlesContainer"></div>
-  <div class="dot-grid-overlay"></div>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🚕</div>
+      TaxiNeto360
+    </a>
+    <ul class="nav-links">
+      <li><a href="#herramientas">Herramientas</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#seguridad">Seguridad</a></li>
+      <li><a href="#nosotros">Sobre nosotros</a></li>
+      <li><a href="#afiliados">Afiliados</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <span class="nav-badge">30 días gratis</span>
+      <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="btn-primary" target="_blank" rel="noopener">
+        Google Play
+      </a>
+    </div>
+    <button class="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ═══════ NAVBAR ═══════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="flex h-16 sm:h-18 items-center justify-between">
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="h-10 w-10 overflow-hidden rounded-xl border border-white/10 bg-white/5 flex items-center justify-center transition-all group-hover:border-brand-400/30 group-hover:shadow-[0_0_20px_rgba(251,191,36,0.15)]">
-            <img src="assets/perfil_2_unico_sin_bordes.jpg" alt="TaxiNeto360" class="h-full w-full object-cover rounded-xl">
-          </div>
-          <div class="leading-tight">
-            <div class="text-base font-bold tracking-tight">Taxi360</div>
-            <div class="text-[11px] text-white/40 font-medium tracking-wide">TaxiNeto360</div>
-          </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow animate">
+        <span class="tag"><span class="tag-dot"></span>Disponible en Google Play</span>
+      </div>
+      <h1 class="hero-title animate delay-1">
+        Una sola app,<br/><em>todo incluido</em>
+      </h1>
+      <p class="hero-sub animate delay-2">
+        Claridad para tu día a día en el taxi. Sin cuentas manuales. Sin líos. Sin sorpresas. Sabe cuánto ganas de verdad.
+      </p>
+      <div class="hero-actions animate delay-3">
+        <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="btn-primary" target="_blank" rel="noopener">
+          ▶ Probar 30 días gratis
         </a>
-        <div class="hidden lg:flex items-center gap-1">
-          <a href="#herramientas" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Herramientas</a>
-          <a href="#precios" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Precios</a>
-          <a href="#seguridad" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Seguridad</a>
-          <a href="#quienes" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Sobre nosotros</a>
-          <a href="#afiliados" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Afiliados</a>
-          <a href="#contacto" class="px-4 py-2 text-sm text-white/55 font-medium hover:text-white rounded-lg hover:bg-white/[0.04] transition-colors">Contacto</a>
-          <div class="ml-4 pl-4 border-l border-white/[0.06]">
-            <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-5 py-2.5 text-xs font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 transition-all btn-shine">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i> Probar 30 días gratis
-            </a>
-          </div>
-        </div>
-        <button id="mobileMenuBtn" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/70 hover:text-white transition-colors">
-          <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
+        <a href="#herramientas" class="btn-ghost">Ver herramientas</a>
+      </div>
+      <div class="hero-trust animate delay-4">
+        <div class="trust-item"><span class="trust-dot"></span>Datos protegidos</div>
+        <div class="trust-item"><span class="trust-dot"></span>Setup en 1 min</div>
+        <div class="trust-item"><span class="trust-dot"></span>Desde 9,99€/mes</div>
+        <div class="trust-item"><span class="trust-dot"></span>Simple y directo</div>
       </div>
     </div>
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-white/[0.06] bg-dark-950/95 backdrop-blur-xl">
-      <div class="mx-auto max-w-7xl px-5 py-4 flex flex-col gap-1">
-        <a href="#herramientas" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Herramientas</a>
-        <a href="#precios" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Precios</a>
-        <a href="#seguridad" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Seguridad</a>
-        <a href="#quienes" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Sobre nosotros</a>
-        <a href="#afiliados" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Afiliados</a>
-        <a href="#contacto" class="mlink px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.04] rounded-xl transition-colors">Contacto</a>
-        <div class="mt-3 pt-3 border-t border-white/[0.06]">
-          <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="w-full flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 btn-shine">
-            <i data-lucide="download" class="w-4 h-4"></i> Probar 30 días gratis
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ═══════ HERO ═══════ -->
-  <section class="relative pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden content-wrapper">
-    <div class="pointer-events-none absolute inset-0">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(251,191,36,0.1),transparent); animation:pulseGlow 4s ease-in-out infinite"></div>
-      <div class="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-violet-500/[0.05] rounded-full blur-3xl" style="animation:pulse-drift-1 8s ease-in-out infinite"></div>
-      <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand-400/[0.04] rounded-full blur-3xl" style="animation:pulse-drift-2 10s ease-in-out infinite"></div>
-    </div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 relative">
-      <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <div>
-          <div class="flex flex-wrap gap-2 mb-7 animate-fade-up">
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 px-3 py-1 text-xs font-medium text-emerald-300">
-              <i data-lucide="zap" class="w-3 h-3"></i> 30 días gratis
-            </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] px-3 py-1 text-xs font-medium text-white/55">
-              <i data-lucide="badge-check" class="w-3 h-3 text-brand-300"></i> Google Play
-            </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-400/10 border border-brand-400/20 px-3 py-1 text-xs font-medium text-brand-300">
-              <i data-lucide="crown" class="w-3 h-3"></i> Una sola app, todo incluido
-            </span>
-          </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] animate-fade-up" style="letter-spacing:-0.03em">
-            <span class="text-gradient-white">Claridad para tu día a día en el taxi</span>
-          </h1>
-          <p class="mt-6 max-w-lg text-base sm:text-lg text-white/55 leading-relaxed animate-fade-up delay-200">
-            Sin cuentas manuales. Sin líos. Sin sorpresas.<br>Una sola app con todo lo que necesitas para saber cuánto ganas de verdad.
-          </p>
-          <div class="mt-7 space-y-3 animate-fade-up delay-300">
-            <div class="flex items-start gap-2.5"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 shrink-0"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i></div><span class="text-sm text-white/65">30 días gratis</span></div>
-            <div class="flex items-start gap-2.5"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 shrink-0"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i></div><span class="text-sm text-white/65">Simple y directo</span></div>
-            <div class="flex items-start gap-2.5"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 shrink-0"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i></div><span class="text-sm text-white/65">Pensado para el taxi real</span></div>
-          </div>
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row animate-fade-up delay-400">
-            <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 active:translate-y-0 transition-all btn-shine">
-              <i data-lucide="download" class="w-4 h-4"></i> Probar 30 días gratis
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
-            </a>
-            <a href="#herramientas" class="inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white/90 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5 transition-all">
-              Ver herramientas <i data-lucide="chevron-right" class="w-4 h-4"></i>
-            </a>
-            <a href="onboarding.html" class="inline-flex items-center justify-center gap-2.5 rounded-xl border border-brand-400/20 bg-brand-400/5 px-6 py-3.5 text-sm font-semibold text-brand-300 hover:bg-brand-400/10 hover:border-brand-400/30 hover:-translate-y-0.5 transition-all">
-              <i data-lucide="book-open" class="w-4 h-4"></i> Cómo funciona
-            </a>
-          </div>
-          <div class="mt-8 flex items-center gap-6 text-xs text-white/35 animate-fade-up delay-500">
-            <div class="flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5"></i> Datos protegidos</div>
-            <div class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Setup en 1 min</div>
-            <div class="flex items-center gap-1.5"><i data-lucide="credit-card" class="w-3.5 h-3.5"></i> Desde 9,99€/mes</div>
-          </div>
-        </div>
-        <!-- Phone mockup with enhanced glow -->
-        <div class="animate-fade-up delay-300 relative">
-          <div class="absolute inset-0 bg-brand-400/10 blur-[100px] rounded-full scale-75"></div>
-          <div class="phone-wrapper relative mx-auto w-full max-w-[290px]">
-            <div class="phone-orbit"></div>
-            <div class="relative overflow-hidden rounded-[2.5rem] border-2 border-white/10 bg-dark-950 shadow-[0_40px_100px_rgba(0,0,0,0.7)]">
-              <div class="absolute inset-0 pointer-events-none rounded-[2.5rem] ring-1 ring-inset ring-white/[0.08]"></div>
-              <div class="pointer-events-none absolute left-1/2 top-3 h-5 w-24 -translate-x-1/2 rounded-full bg-dark-950 ring-1 ring-white/10 z-10"></div>
-              <div class="h-[540px] bg-dark-950 relative">
-                <video class="h-full w-full object-cover" src="assets/video.mp4" poster="assets/chica paula.png" playsinline preload="metadata" autoplay muted loop></video>
-                <button id="muteBtn" onclick="toggleMute()" class="absolute bottom-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white/70 hover:text-white hover:bg-black/80 transition-all" title="Activar/Silenciar audio">
-                  <i data-lucide="volume-x" class="w-4 h-4" id="muteIcon"></i>
-                </button>
+    <div class="hero-visual animate delay-2">
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-topbar">
+              <span class="phone-app-name">TaxiNeto360</span>
+              <span class="phone-badge-sm">HOY</span>
+            </div>
+            <div class="phone-stat-row">
+              <div class="phone-stat">
+                <div class="phone-stat-val"><span class="phone-gold">128</span></div>
+                <div class="phone-stat-lbl">Jornadas</div>
+              </div>
+              <div class="phone-stat">
+                <div class="phone-stat-val"><span class="phone-gold">94</span><span style="font-size:11px">%</span></div>
+                <div class="phone-stat-lbl">Eficiencia</div>
               </div>
             </div>
-            <div class="mt-3 text-center">
-              <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-brand-300 transition-colors">Ver en Google Play <i data-lucide="external-link" class="w-3 h-3"></i></a>
+            <div class="phone-card">
+              <div class="phone-card-title">KPI — Esta semana</div>
+              <div class="phone-bar-row">
+                <span class="phone-bar-lbl">Lun</span>
+                <div class="phone-bar-track"><div class="phone-bar-fill" style="width:80%"></div></div>
+                <span class="phone-bar-val">142€</span>
+              </div>
+              <div class="phone-bar-row">
+                <span class="phone-bar-lbl">Mar</span>
+                <div class="phone-bar-track"><div class="phone-bar-fill" style="width:65%"></div></div>
+                <span class="phone-bar-val">115€</span>
+              </div>
+              <div class="phone-bar-row">
+                <span class="phone-bar-lbl">Mié</span>
+                <div class="phone-bar-track"><div class="phone-bar-fill" style="width:92%"></div></div>
+                <span class="phone-bar-val">163€</span>
+              </div>
+              <div class="phone-bar-row">
+                <span class="phone-bar-lbl">Jue</span>
+                <div class="phone-bar-track"><div class="phone-bar-fill" style="width:55%"></div></div>
+                <span class="phone-bar-val">98€</span>
+              </div>
+            </div>
+            <div class="phone-tool-row">
+              <div class="phone-tool">
+                <div class="phone-tool-icon">✈️</div>
+                <div class="phone-tool-lbl">LlegadasDay</div>
+              </div>
+              <div class="phone-tool">
+                <div class="phone-tool-icon">🚕</div>
+                <div class="phone-tool-lbl">TarifaGo</div>
+              </div>
+              <div class="phone-tool">
+                <div class="phone-tool-icon">📊</div>
+                <div class="phone-tool-lbl">KPI</div>
+              </div>
+              <div class="phone-tool">
+                <div class="phone-tool-icon">💵</div>
+                <div class="phone-tool-lbl">Neto Apps</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ TRUST BAR ═══════ -->
-  <section class="py-12 sm:py-16 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 mt-12">
-      <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
-        <div class="text-center animate-fade-up counter-glow">
-          <div class="flex items-center justify-center gap-1">
-            <i data-lucide="layers" class="w-5 h-5 text-brand-400"></i>
-            <span class="text-4xl sm:text-5xl font-extrabold text-gradient-gold tracking-tight counter font-mono" data-target="1">0</span>
-          </div>
-          <div class="mt-2 text-sm text-white/50 font-medium">Una sola app</div>
-        </div>
-        <div class="text-center animate-fade-up delay-100 counter-glow">
-          <div class="flex items-center justify-center gap-1">
-            <i data-lucide="wrench" class="w-5 h-5 text-brand-400"></i>
-            <span class="text-4xl sm:text-5xl font-extrabold text-gradient-gold tracking-tight counter font-mono" data-target="15">0</span><span class="text-4xl sm:text-5xl font-extrabold text-gradient-gold tracking-tight">+</span>
-          </div>
-          <div class="mt-2 text-sm text-white/50 font-medium">Herramientas incluidas</div>
-        </div>
-        <div class="text-center animate-fade-up delay-200 counter-glow">
-          <div class="flex items-center justify-center gap-1">
-            <i data-lucide="clock" class="w-5 h-5 text-brand-400"></i>
-            <span class="text-4xl sm:text-5xl font-extrabold text-gradient-gold tracking-tight counter font-mono" data-target="30">0</span>
-          </div>
-          <div class="mt-2 text-sm text-white/50 font-medium">Días gratis de prueba</div>
-        </div>
-        <div class="text-center animate-fade-up delay-300 counter-glow">
-          <div class="flex items-center justify-center gap-1">
-            <i data-lucide="file-output" class="w-5 h-5 text-brand-400"></i>
-            <span class="text-4xl sm:text-5xl font-extrabold text-gradient-gold tracking-tight counter font-mono" data-target="4">0</span>
-          </div>
-          <div class="mt-2 text-sm text-white/50 font-medium">Formatos de exportación</div>
-        </div>
-      </div>
-    </div>
-    <div class="mt-12 section-divider"></div>
-  </section>
-
-  <!-- ═══════ EL PROBLEMA ═══════ -->
-  <section class="relative py-20 sm:py-28 content-wrapper">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="text-center animate-fade-up mb-12">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight mb-3">¿Sabes realmente cuánto ganas?</h2>
-        <p class="text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">El sector del taxi tiene un problema claro</p>
-      </div>
-
-      <div class="grid gap-6 lg:grid-cols-3">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 animate-fade-up">
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-400/10 border border-red-400/20"><i data-lucide="briefcase" class="w-5 h-5 text-red-300"></i></div>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Autónomos</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Calculan a ojo. No saben cuánto ganan de verdad después de comisiones, gasolina y gastos.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-400/10 border border-red-400/20"><i data-lucide="users" class="w-5 h-5 text-red-300"></i></div>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Asalariados</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Dependen de las liquidaciones de su jefe. No tienen datos propios ni forma de comprobarlos.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-400/10 border border-red-400/20"><i data-lucide="building-2" class="w-5 h-5 text-red-300"></i></div>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Pequeñas empresas</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Gestionan todo en hojas de cálculo. Errores, conflictos y falta de transparencia interna.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ DIFERENCIACIÓN ═══════ -->
-  <section class="relative py-20 sm:py-28 border-y border-white/[0.06] content-wrapper">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="text-center animate-fade-up mb-12">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider text-brand-300">Lo que nos diferencia</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Simple. Directo. Para el taxi real.</h2>
-      </div>
-
-      <div class="grid gap-6 lg:grid-cols-2 max-w-4xl mx-auto">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 animate-fade-up">
-          <h3 class="text-sm font-bold text-red-300 mb-4">TaxiNeto360 NO es:</h3>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="x" class="w-4 h-4 text-red-400/70 shrink-0"></i>Un Excel complicado</li>
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="x" class="w-4 h-4 text-red-400/70 shrink-0"></i>Un sistema pesado de flotas</li>
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="x" class="w-4 h-4 text-red-400/70 shrink-0"></i>Una app genérica que no entiende el taxi</li>
-          </ul>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 ring-1 ring-brand-400/20 animate-fade-up delay-100">
-          <h3 class="text-sm font-bold text-brand-300 mb-4">TaxiNeto360 SÍ es:</h3>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i>Simple: lo usas desde el primer día</li>
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i>Directo: datos claros, sin rodeos</li>
-            <li class="flex items-center gap-2.5 text-sm text-white/60"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i>Pensado para el taxista real de Barcelona</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ CÓMO FUNCIONA ═══════ -->
-  <section class="relative py-20 sm:py-28 content-wrapper">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="text-center animate-fade-up mb-12">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight mb-3">Cómo funciona</h2>
-        <p class="text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">En 4 pasos, todo claro</p>
-      </div>
-
-      <div class="grid gap-6 lg:grid-cols-4">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 text-center animate-fade-up">
-          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-accent-300/20 to-accent-300/5 border border-accent-300/20">
-            <span class="text-lg font-extrabold text-accent-300 font-mono">1</span>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Descarga</h3>
-          <p class="text-sm text-white/55">Instala TaxiNeto360 desde Google Play.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 text-center animate-fade-up delay-100">
-          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-brand-400/20">
-            <span class="text-lg font-extrabold text-brand-300 font-mono">2</span>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Configura</h3>
-          <p class="text-sm text-white/55">Introduce tu perfil: autónomo, asalariado o empresa.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 text-center animate-fade-up delay-200">
-          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/20 to-emerald-400/5 border border-emerald-400/20">
-            <span class="text-lg font-extrabold text-emerald-300 font-mono">3</span>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Registra</h3>
-          <p class="text-sm text-white/55">Cada jornada, registra llegadas, tarifas y fotos.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-7 text-center animate-fade-up delay-300">
-          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-violet-400/20 to-violet-400/5 border border-violet-400/20">
-            <span class="text-lg font-extrabold text-violet-300 font-mono">4</span>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Analiza</h3>
-          <p class="text-sm text-white/55">Consulta tu neto real, KPIs y exporta tus datos.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HERRAMIENTAS -->
-  <section id="herramientas" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="pointer-events-none absolute right-0 top-1/3 w-[500px] h-[500px] bg-brand-400/[0.03] rounded-full blur-3xl"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Herramientas</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">15+ herramientas que trabajan por ti</h2>
-        <p class="mt-5 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Todo lo que necesitas para dominar tu jornada, en una sola app. Sin apps extra, sin complicaciones.</p>
-      </div>
-
-      <!-- Badge legend -->
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-up">
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-400/10 border border-brand-400/20 px-3 py-1 text-[11px] font-bold text-brand-300">PREMIUM</span>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 px-3 py-1 text-[11px] font-bold text-emerald-300">GRATIS</span>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 border border-sky-400/20 px-3 py-1 text-[11px] font-bold text-sky-300">BCN — Exclusivo Barcelona</span>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-violet-400/10 border border-violet-400/20 px-3 py-1 text-[11px] font-bold text-violet-300">FLOTA</span>
-      </div>
-
-      <!-- All tools grid -->
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-
-        <!-- Mi Jornada -->
-        <div class="tool-card rounded-2xl border border-brand-400/20 bg-brand-400/[0.04] glass card-hover p-6 animate-fade-up sm:col-span-2 lg:col-span-3 xl:col-span-4">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📋</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Mi Jornada</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">El corazón de TaxiNeto360. Registra horas, kilómetros, servicios, taxímetro, VISA y efectivo de cada día. Cierre automático, evidencias con foto y exportación en CSV, PDF, Excel y HTML.</p>
-        </div>
-
-        <!-- GPS TaxiNeto! -->
-        <div class="tool-card rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.04] glass card-hover p-6 animate-fade-up sm:col-span-2 lg:col-span-3 xl:col-span-4">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🧭</span>
-            <span class="rounded-full bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">GPS Taxi</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Navegación exclusiva para taxistas con carriles bus-taxi en tiempo real. Burbuja flotante cuando cambias de app — vuelves al mapa con un solo toque. Pantalla siempre activa mientras conduces. Rutas optimizadas para BCN y MAD.</p>
-        </div>
-
-        <!-- LlegadasDay! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">✈️</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">LlegadasDay!</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Vuelos aterrizando en tiempo real en BCN y MAD. Todas las terminales, cancelaciones y estado actualizado. Sé el primero en la parada del aeropuerto.</p>
-        </div>
-
-        <!-- TarifaGo! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🚕</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">TarifaGo</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Calcula tarifas y comisiones al instante. Normativa Barcelona, suplementos, tráfico en tiempo real. Compatible con Google Maps y Waze.</p>
-        </div>
-
-        <!-- KPI Intelligence -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📊</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">KPI Intelligence</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Tus números reales: rendimiento, tendencias y datos claros de cada jornada. Ve cómo rindes de verdad.</p>
-        </div>
-
-        <!-- Neto Apps -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">💵</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Neto Apps</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">¿Cuánto te queda después de Uber, Cabify y comisiones? Aquí lo sabes al céntimo. Comparativa limpia.</p>
-        </div>
-
-        <!-- Historial -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📋</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Mi Historial</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Todo tu historial de jornadas guardado. Consulta cualquier día en segundos. Tu memoria profesional.</p>
-        </div>
-
-        <!-- MiCalendario! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📅</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">MiCalendario</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Tu calendario de descansos y turnos sincronizado. Nunca pierdas el control de tus días libres.</p>
-        </div>
-
-        <!-- MisEventos! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up ring-1 ring-emerald-400/15">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🎪</span>
-            <span class="rounded-full bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">MisEventos</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Conciertos, partidos, ferias... Eventos que generan demanda de taxi HOY con previsión del tiempo incluida.</p>
-        </div>
-
-        <!-- MiCiudad! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100 ring-1 ring-emerald-400/15">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📍</span>
-            <span class="rounded-full bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">MiCiudad</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Hospitales, estaciones, monumentos, museos... Todos los puntos clave de tu ciudad con GPS y navegación integrada.</p>
-        </div>
-
-        <!-- MiGasolinera! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">⛽</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">MiGasolinera</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Las gasolineras más baratas cerca de ti en tiempo real. Datos del Ministerio de Industria. Ahorra en cada depósito.</p>
-        </div>
-
-        <!-- Trenes! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🚆</span>
-            <span class="rounded-full bg-sky-400/10 border border-sky-400/20 px-2.5 py-0.5 text-[10px] font-bold text-sky-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Trenes / Buses</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Llegadas de trenes a Barcelona Sants en tiempo real. Datos de Renfe por bloques horarios. Pasajeros con maletas te esperan.</p>
-        </div>
-
-        <!-- Barcos! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🚢</span>
-            <span class="rounded-full bg-sky-400/10 border border-sky-400/20 px-2.5 py-0.5 text-[10px] font-bold text-sky-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Barcos</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Cruceros y ferris en el Puerto de Barcelona. Miles de turistas desembarcando cada día. Datos oficiales del puerto.</p>
-        </div>
-
-        <!-- Tráfico! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🚦</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">INCLUIDA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Tráfico</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Estado del tráfico en tiempo real: fluido, denso o congestionado. Lo sabes antes de salir. Auto-refresco cada 5 min.</p>
-        </div>
-
-        <!-- Tradúceme! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up ring-1 ring-emerald-400/15">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">🌍</span>
-            <span class="rounded-full bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">GRATIS</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Tradúceme</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Traductor instantáneo con voz: español ↔ inglés, francés y alemán. Habla con cualquier turista sin problemas. Funciona offline.</p>
-        </div>
-
-        <!-- Radares! -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">📡</span>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/20 px-2.5 py-0.5 text-[10px] font-bold text-brand-300">PREMIUM</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Mapa Taxi</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Radares fijos y móviles en tiempo real. Conduce tranquilo sabiendo dónde están los controles de velocidad.</p>
-        </div>
-
-        <!-- Conductores -->
-        <div class="tool-card rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">👥</span>
-            <span class="rounded-full bg-violet-400/10 border border-violet-400/20 px-2.5 py-0.5 text-[10px] font-bold text-violet-300">FLOTA</span>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Conductores</h3>
-          <p class="mt-2 text-sm text-white/55 leading-relaxed">Gestiona tu flota de conductores con historial completo y datos individuales. Dashboard centralizado por conductor.</p>
-        </div>
-
-      </div>
-
-      <!-- Extra tools row -->
-      <h3 class="mt-12 text-center text-lg font-bold text-white/70 animate-fade-up">Y además...</h3>
-      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-2xl">📸</span>
-            <h3 class="text-base font-bold">Evidencias con fotos</h3>
-          </div>
-          <p class="text-sm text-white/50 leading-relaxed">Fotos de VISA y taxímetro como prueba real ante cualquier reclamación.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-100">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-2xl">🧾</span>
-            <h3 class="text-base font-bold">Liquidaciones automáticas</h3>
-          </div>
-          <p class="text-sm text-white/50 leading-relaxed">Tus ingresos netos resumidos sin hacer cuentas a mano.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover p-6 animate-fade-up delay-200">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-2xl">📥</span>
-            <h3 class="text-base font-bold">Exportación CSV / PDF / Excel / HTML</h3>
-          </div>
-          <p class="text-sm text-white/50 leading-relaxed">Descarga todos tus datos en el formato que necesites. Listo para tu gestoría.</p>
-        </div>
-      </div>
-
-      <!-- CTA dentro de herramientas -->
-      <div class="mt-12 text-center animate-fade-up">
-        <p class="text-white/50 mb-5 text-sm">Todo esto en una sola app. Sin complicaciones.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 transition-all btn-shine">
-          <i data-lucide="download" class="w-4 h-4"></i> Descargar TaxiNeto360 gratis
-        </a>
-      </div>
-
-      <!-- Screenshots section -->
-      <div class="mt-14 rounded-2xl border border-white/[0.06] bg-white/[0.03] glass overflow-hidden animate-fade-up">
-        <div class="flex items-center justify-between border-b border-white/[0.06] bg-white/[0.02] px-5 py-3">
-          <div class="flex items-center gap-2"><div class="flex gap-1.5"><div class="h-2.5 w-2.5 rounded-full bg-white/10"></div><div class="h-2.5 w-2.5 rounded-full bg-white/10"></div><div class="h-2.5 w-2.5 rounded-full bg-white/10"></div></div><span class="ml-3 text-xs text-white/35">Capturas reales de TaxiNeto360</span></div>
-          <span class="text-xs text-white/25">Taxi360</span>
-        </div>
-        <div class="p-4 sm:p-6 lg:p-8 grid gap-6 lg:grid-cols-5 lg:items-center">
-          <div class="lg:col-span-3"><div class="overflow-hidden rounded-xl border border-white/[0.06]"><img src="assets/portada_3.png" alt="Capturas reales TaxiNeto360" class="w-full h-auto object-contain"></div></div>
-          <div class="lg:col-span-2 space-y-5">
-            <h3 class="text-xl font-bold">Visual limpio. Fácil de usar.</h3>
-            <p class="text-sm text-white/55 leading-relaxed">Así se ve el día a día con TaxiNeto360: registro rápido, cierres con evidencias, liquidaciones automáticas y KPIs de rendimiento.</p>
-            <div class="space-y-2.5">
-              <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/60">Jornada + LlegadasDay! + TarifaGo!</span></div>
-              <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/60">KPI Intelligence + neto tras apps</span></div>
-              <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/60">Exportación en CSV, PDF, Excel y HTML</span></div>
-              <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/60">Evidencias fotográficas adjuntas</span></div>
-            </div>
-            <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 transition-all btn-shine">
-              <i data-lucide="download" class="w-4 h-4"></i> Probar TaxiNeto360 gratis
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING AND REST OF SECTIONS IN NEXT PART -->
-  <section id="precios" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-400/[0.04] rounded-full blur-3xl"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="crown" class="w-3.5 h-3.5"></i> Precios</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Un plan para cada necesidad</h2>
-        <p class="mt-5 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Una sola app — <strong class="text-white/80">TaxiNeto360</strong> — con todas las herramientas incluidas. Elige el plan que se adapta a ti.</p>
-      </div>
-
-      <div class="mt-14 grid gap-6 lg:grid-cols-3 max-w-5xl mx-auto">
-
-        <!-- PLAN INDIVIDUAL -->
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover flex flex-col p-7 animate-fade-up pricing-popular relative">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10"><span class="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-400 to-brand-500 px-4 py-1.5 text-xs font-bold text-dark-950 shadow-lg"><i data-lucide="star" class="w-3 h-3"></i> Más popular</span></div>
-          <div class="flex items-center gap-3 mb-5 mt-2">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/20 border border-brand-400/20"><i data-lucide="user" class="w-5 h-5 text-brand-300"></i></div>
-            <div><h3 class="text-lg font-bold">Individual</h3><p class="text-xs text-white/50">Taxista autónomo o asalariado</p></div>
-          </div>
-          <div class="mb-6 pb-6 border-b border-white/[0.06]">
-            <div class="flex items-baseline gap-1"><span class="text-4xl font-extrabold tracking-tight text-gradient-gold font-mono">9,99€</span><span class="text-sm text-white/40">/mes</span></div>
-            <p class="mt-2 text-xs text-emerald-300 font-semibold flex items-center gap-1.5"><i data-lucide="gift" class="w-3.5 h-3.5"></i> 30 días de prueba gratuita</p>
-          </div>
-          <div class="flex-1 space-y-3 mb-7">
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65"><strong class="text-white/85">Todas las herramientas</strong> incluidas</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65">LlegadasDay! + TarifaGo! + KPI Intelligence</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65">Neto después del uso de apps</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65">Evidencias con fotos (VISA + taxímetro)</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65">Exportación CSV, PDF, Excel y HTML</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-brand-400 shrink-0"></i><span class="text-sm text-white/65">Liquidaciones netas automáticas</span></div>
-          </div>
-          <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="w-full flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 active:translate-y-0 transition-all btn-shine">
-            <i data-lucide="download" class="w-4 h-4"></i> Google Play
-          </a>
-        </div>
-
-        <!-- PLAN FLOTA -->
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover flex flex-col p-7 animate-fade-up delay-100">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.06]"><i data-lucide="building-2" class="w-5 h-5 text-white/70"></i></div>
-            <div><h3 class="text-lg font-bold">Flota</h3><p class="text-xs text-white/50">Empresas con varias licencias</p></div>
-          </div>
-          <div class="mb-6 pb-6 border-b border-white/[0.06]">
-            <div class="flex items-baseline gap-1"><span class="text-4xl font-extrabold tracking-tight text-white font-mono">59,99€</span><span class="text-sm text-white/40">/mes</span></div>
-            <p class="mt-2 text-xs text-emerald-300 font-semibold flex items-center gap-1.5"><i data-lucide="gift" class="w-3.5 h-3.5"></i> 30 días de prueba gratuita</p>
-          </div>
-          <div class="flex-1 space-y-3 mb-7">
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65"><strong class="text-white/85">Todo lo del plan Individual</strong></span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65">Gestión <strong class="text-white/85">multi-conductor</strong> y multi-licencia</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65">Panel de control ampliado</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65">Informes por periodos y rangos</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65">Control operativo completo de flota</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/65">Soporte prioritario</span></div>
-          </div>
-          <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="w-full flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white/90 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5 transition-all">
-            <i data-lucide="download" class="w-4 h-4"></i> Google Play
-          </a>
-        </div>
-
-        <!-- PLAN MICRO-INFLUENCER -->
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover flex flex-col p-7 animate-fade-up delay-200 pricing-influencer relative">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10"><span class="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-400 to-violet-500 px-4 py-1.5 text-xs font-bold text-white shadow-lg"><i data-lucide="video" class="w-3 h-3"></i> Divulgadores</span></div>
-          <div class="flex items-center gap-3 mb-5 mt-2">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-400/20 border border-violet-400/20"><i data-lucide="megaphone" class="w-5 h-5 text-violet-300"></i></div>
-            <div><h3 class="text-lg font-bold">Micro-Influencer</h3><p class="text-xs text-white/50">Divulgadores de contenido taxi</p></div>
-          </div>
-          <div class="mb-6 pb-6 border-b border-white/[0.06]">
-            <div class="flex items-baseline gap-1"><span class="text-4xl font-extrabold tracking-tight text-white font-mono">Gratis</span></div>
-            <p class="mt-2 text-xs text-violet-300 font-semibold flex items-center gap-1.5"><i data-lucide="gift" class="w-3.5 h-3.5"></i> 30 días gratis + 14 días extra</p>
-          </div>
-          <div class="flex-1 space-y-3 mb-7">
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-violet-400 shrink-0"></i><span class="text-sm text-white/65"><strong class="text-white/85">30 días gratis</strong> + <strong class="text-white/85">14 días extra</strong> (44 días en total)</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-violet-400 shrink-0"></i><span class="text-sm text-white/65"><strong class="text-white/85">Acceso completo</strong> a todas las herramientas</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-violet-400 shrink-0"></i><span class="text-sm text-white/65">A cambio: crear un <strong class="text-white/85">vídeo de feedback honesto</strong> sobre la app</span></div>
-            <div class="flex items-start gap-2.5"><i data-lucide="circle-check" class="mt-0.5 w-4 h-4 text-violet-400 shrink-0"></i><span class="text-sm text-white/65">Compartir tu experiencia real como taxista</span></div>
-          </div>
-          <a href="mailto:taxi360barcelona@gmail.com?subject=Plan%20Micro-Influencer%20TaxiNeto360" class="w-full flex items-center justify-center gap-2.5 rounded-xl border border-violet-400/30 bg-violet-400/10 px-6 py-3.5 text-sm font-semibold text-violet-200 hover:bg-violet-400/20 hover:-translate-y-0.5 transition-all">
-            <i data-lucide="mail" class="w-4 h-4"></i> Solicitar acceso
-          </a>
-        </div>
-      </div>
-
-      <!-- Pricing note -->
-      <div class="mt-10 max-w-5xl mx-auto animate-fade-up">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-5 sm:p-6">
-          <div class="grid gap-4 sm:grid-cols-3">
-            <div class="flex items-start gap-3"><i data-lucide="info" class="w-4 h-4 text-brand-300 shrink-0 mt-0.5"></i><div><p class="text-sm font-semibold text-white/85">Sin permanencia</p><p class="text-xs text-white/45 mt-0.5">Cancela cuando quieras. Sin penalizaciones ni letra pequeña.</p></div></div>
-            <div class="flex items-start gap-3"><i data-lucide="credit-card" class="w-4 h-4 text-brand-300 shrink-0 mt-0.5"></i><div><p class="text-sm font-semibold text-white/85">Pago por Google Play</p><p class="text-xs text-white/45 mt-0.5">Gestión de suscripción segura a través de Google Play Store.</p></div></div>
-            <div class="flex items-start gap-3"><i data-lucide="shield" class="w-4 h-4 text-brand-300 shrink-0 mt-0.5"></i><div><p class="text-sm font-semibold text-white/85">Todas las herramientas incluidas</p><p class="text-xs text-white/45 mt-0.5">LlegadasDay!, TarifaGo!, KPI Intelligence, exportación CSV/PDF/Excel/HTML…</p></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ PARA QUIÉN ═══════ -->
-  <section class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="target" class="w-3.5 h-3.5"></i> Para quién es</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Hecho para el día a día del taxista</h2>
-      </div>
-      <div class="mt-14 grid gap-5 lg:grid-cols-3">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up">
-          <div class="flex items-start justify-between mb-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent-300/20 to-accent-300/5 border border-white/[0.06]"><i data-lucide="user" class="w-5 h-5 text-white/80"></i></div>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/15 px-3 py-1 text-[11px] font-semibold text-brand-300">9,99€/mes</span>
-          </div>
-          <h3 class="text-lg font-bold text-white/95">Taxista autónomo</h3>
-          <p class="mt-2 text-sm text-white/50">Sabes cuánto ganas, cuánto gastas y cuánto te queda. Tú llevas el control.</p>
-          <div class="mt-5 space-y-2.5">
-            <div class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 w-4 h-4 text-emerald-400/70 shrink-0"></i><span class="text-sm text-white/55">LlegadasDay! + TarifaGo! + KPI Intelligence</span></div>
-          </div>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up delay-100">
-          <div class="flex items-start justify-between mb-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400/20 to-emerald-400/5 border border-white/[0.06]"><i data-lucide="handshake" class="w-5 h-5 text-white/80"></i></div>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/15 px-3 py-1 text-[11px] font-semibold text-brand-300">9,99€/mes</span>
-          </div>
-          <h3 class="text-lg font-bold text-white/95">Conductor asalariado</h3>
-          <p class="mt-2 text-sm text-white/50">Compruebas las liquidaciones de tu empresa con datos claros. Sin depender de nadie.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up delay-200">
-          <div class="flex items-start justify-between mb-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-white/[0.06]"><i data-lucide="building-2" class="w-5 h-5 text-white/80"></i></div>
-            <span class="rounded-full bg-brand-400/10 border border-brand-400/15 px-3 py-1 text-[11px] font-semibold text-brand-300">59,99€/mes</span>
-          </div>
-          <h3 class="text-lg font-bold text-white/95">Pequeña empresa / Flota</h3>
-          <p class="mt-2 text-sm text-white/50">Gestión centralizada, liquidaciones automáticas y transparencia interna. Menos errores, menos conflictos.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ SEGURIDAD ═══════ -->
-  <section id="seguridad" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="shield" class="w-3.5 h-3.5"></i> Seguridad</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Tu información, protegida</h2>
-        <p class="mt-3 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Tus datos son solo tuyos. Esto da credibilidad.</p>
-      </div>
-      <div class="mt-14 grid gap-5 lg:grid-cols-4">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up">
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-300/20 to-accent-300/5 border border-white/[0.06] mb-5"><i data-lucide="lock" class="w-6 h-6 text-white/80"></i></div>
-          <h3 class="text-lg font-bold text-white/95">Datos privados</h3>
-          <p class="mt-2.5 text-sm text-white/55 leading-relaxed">Tu información es solo tuya. Nadie más tiene acceso a tus registros ni a tus ganancias.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up delay-100">
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400/20 to-brand-400/5 border border-white/[0.06] mb-5"><i data-lucide="lock" class="w-6 h-6 text-white/80"></i></div>
-          <h3 class="text-lg font-bold text-white/95">No se comparten sin tu permiso</h3>
-          <p class="mt-2.5 text-sm text-white/55 leading-relaxed">Nunca compartimos tus datos con terceros. Tú decides quién ve qué.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up delay-200">
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400/20 to-emerald-400/5 border border-white/[0.06] mb-5"><i data-lucide="shield" class="w-6 h-6 text-white/80"></i></div>
-          <h3 class="text-lg font-bold text-white/95">Información protegida</h3>
-          <p class="mt-2.5 text-sm text-white/55 leading-relaxed">Encriptación de nivel empresarial. Tus datos están seguros ante cualquier situación.</p>
-        </div>
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass card-hover h-full p-7 animate-fade-up delay-300">
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-300/20 to-brand-300/5 border border-white/[0.06] mb-5"><i data-lucide="badge-check" class="w-6 h-6 text-white/80"></i></div>
-          <h3 class="text-lg font-bold text-white/95">Evidencias verificables</h3>
-          <p class="mt-2.5 text-sm text-white/55 leading-relaxed">Fotos de VISA y taxímetro como prueba real de cada jornada. Listo para auditorías.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ SOBRE NOSOTROS ═══════ -->
-  <section id="quienes" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Sobre Taxi360</h2>
-        <p class="mt-5 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Taxi360 nace para dar claridad al día a día del taxi.</p>
-        <p class="mt-4 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Creemos que cada conductor merece saber cuánto gana de verdad, sin depender de nadie. Una herramienta simple, directa y pensada 100% para el taxi real de Barcelona.</p>
-        <p class="mt-4 text-base text-white/50 leading-relaxed max-w-3xl mx-auto">Nuestros valores: <span class="text-white/70">Simplicidad · Claridad · Control · Seguridad · Honestidad</span></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ AFILIADOS ═══════ -->
-  <section id="afiliados" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-400/[0.04] rounded-full blur-3xl"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-emerald-300"><i data-lucide="handshake" class="w-3.5 h-3.5"></i> Afiliados</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Trae taxistas y gana meses gratis</h2>
-        <p class="mt-5 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">Por cada taxista que se registre con tu código de afiliado, ganas <strong class="text-white/80">30 días gratis</strong> acumulables. Hasta <strong class="text-white/80">12 meses gratuitos</strong>.</p>
-      </div>
-
-      <div class="mt-14 grid gap-6 lg:grid-cols-3 max-w-5xl mx-auto mb-12">
-        <div class="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 glass p-7 animate-fade-up">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/20 border border-emerald-400/30 mb-5"><i data-lucide="gift" class="w-6 h-6 text-emerald-300"></i></div>
-          <h3 class="text-lg font-bold mb-3">30 días gratis por referido</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Cada taxista que se registre con tu código de invitación te regala <strong class="text-white/80">1 mes gratis</strong> de suscripción.</p>
-        </div>
-
-        <div class="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 glass p-7 animate-fade-up delay-100">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/20 border border-emerald-400/30 mb-5"><i data-lucide="layers" class="w-6 h-6 text-emerald-300"></i></div>
-          <h3 class="text-lg font-bold mb-3">Acumulable</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Los meses se acumulan automáticamente. Cuantos más taxistas traigas, más meses gratis disfrutas.</p>
-        </div>
-
-        <div class="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 glass p-7 animate-fade-up delay-200">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/20 border border-emerald-400/30 mb-5"><i data-lucide="award" class="w-6 h-6 text-emerald-300"></i></div>
-          <h3 class="text-lg font-bold mb-3">Máximo 12 meses gratis</h3>
-          <p class="text-sm text-white/60 leading-relaxed">Puedes acumular hasta <strong class="text-white/80">12 meses gratuitos</strong> (12 referidos). Un año entero sin pagar.</p>
-        </div>
-      </div>
-
-      <div class="max-w-2xl mx-auto">
-        <div class="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 glass p-8 sm:p-10 animate-fade-up">
-          <h3 class="text-xl font-bold mb-4">¿Cómo funciona?</h3>
-          <p class="text-sm text-white/60 leading-relaxed mb-6">Activa tu código de afiliado desde la app o contacta con nosotros. Compártelo con otros taxistas y empieza a acumular meses gratis.</p>
-          <div class="space-y-3">
-            <div class="flex items-start gap-3">
-              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/20 shrink-0 mt-0.5"><span class="text-xs font-bold text-emerald-300">1</span></div>
-              <div><span class="text-sm font-semibold text-white/90">Obtén tu código de afiliado</span><p class="text-xs text-white/50 mt-0.5">Desde la app o contactando por WhatsApp/email</p></div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/20 shrink-0 mt-0.5"><span class="text-xs font-bold text-emerald-300">2</span></div>
-              <div><span class="text-sm font-semibold text-white/90">Comparte tu código con otros taxistas</span><p class="text-xs text-white/50 mt-0.5">Cuando se registran con tu código, entran con 30 días gratis</p></div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/20 shrink-0 mt-0.5"><span class="text-xs font-bold text-emerald-300">3</span></div>
-              <div><span class="text-sm font-semibold text-white/90">Gana 30 días gratis por cada uno</span><p class="text-xs text-white/50 mt-0.5">Acumulable hasta 12 meses gratuitos (máx. 12 referidos)</p></div>
-            </div>
-          </div>
-          <a href="mailto:taxi360barcelona@gmail.com?subject=Programa%20de%20Afiliados%20TaxiNeto360" class="w-full flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-emerald-300 to-emerald-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_50px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 transition-all btn-shine mt-7">
-            <i data-lucide="mail" class="w-4 h-4"></i> Escribir a nuestro agente
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ FAQ ═══════ -->
-  <section class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> FAQ</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Preguntas frecuentes</h2>
-      </div>
-      <div class="mt-14 max-w-3xl mx-auto">
-        <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-6 sm:p-8 animate-fade-up">
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Cuánto cuesta TaxiNeto360?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">El plan <strong>Individual</strong> cuesta <strong>9,99€/mes</strong> y el plan <strong>Flota</strong> (empresas) cuesta <strong>59,99€/mes</strong>. Ambos incluyen 30 días de prueba gratuita con acceso total a todas las herramientas. Si eres divulgador de contenido taxi (micro-influencer), tienes 30 días gratis + 14 días extra a cambio de crear un vídeo con tu feedback.</p></div></div>
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Qué herramientas incluye?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">Todas: <strong>LlegadasDay!</strong> (registro de llegadas), <strong>TarifaGo!</strong> (cálculo de tarifas), <strong>KPI Intelligence</strong> (análisis de rendimiento), <strong>Neto después de apps</strong> (neto real tras comisiones), evidencias con fotos, liquidaciones netas automáticas y exportación en <strong>CSV, PDF, Excel y HTML</strong>.</p></div></div>
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Qué es el plan Micro-Influencer?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">Si eres divulgador de contenido sobre el taxi, te damos <strong>30 días gratis + 14 días extra</strong> (44 días en total). El único compromiso es crear un <strong>vídeo compartiendo tu feedback honesto</strong> sobre la app. Contáctanos para activar este plan.</p></div></div>
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Puedo exportar mis datos?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">Sí. Puedes exportar tus jornadas y liquidaciones en <strong>3 formatos: CSV, PDF, Excel y HTML</strong>. Tu información es tuya, accesible cuando la necesites, en el formato que prefieras.</p></div></div>
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Mis datos están seguros?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">Sí. TaxiNeto360 es una herramienta de gestión interna. Tus datos son tuyos, están protegidos y no se comparten con terceros. La seguridad del dato es parte del producto.</p></div></div>
-          <div class="border-b border-white/[0.06]"><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Hay permanencia o compromiso?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">No. Puedes cancelar tu suscripción en cualquier momento desde Google Play. Sin penalizaciones, sin letra pequeña, sin permanencia.</p></div></div>
-          <div class=""><button onclick="toggleFaq(this)" class="flex w-full items-center justify-between py-5 text-left text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors">¿Cómo funciona el programa de afiliados?<i data-lucide="chevron-down" class="w-5 h-5 text-white/40 shrink-0 ml-4 faq-chevron"></i></button><div class="faq-answer"><p class="text-sm text-white/55 leading-relaxed">Obtén tu código de afiliado y compártelo con otros taxistas. Por cada uno que se registre con tu código, ganas <strong>30 días gratis</strong> de suscripción. Los meses son acumulables hasta un máximo de <strong>12 meses gratuitos</strong>. Contacta con nosotros por email o WhatsApp para activar tu código.</p></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ CTA FINAL ═══════ -->
-  <section class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="pointer-events-none absolute inset-0"><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-400/[0.06] rounded-full blur-3xl"></div></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16 relative">
-      <div class="text-center max-w-2xl mx-auto animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gradient-white">Sabe cuánto ganas. De verdad.</h2>
-        <p class="mt-5 text-base text-white/50">Sin cuentas manuales. Sin líos. Sin sorpresas.<br>Todas las herramientas en una sola app, desde 9,99€/mes.</p>
-        <div class="mt-9">
-          <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-8 py-4 text-base font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 transition-all btn-shine">
-            <i data-lucide="download" class="w-5 h-5"></i> Descargar TaxiNeto360
-          </a>
-        </div>
-        <div class="mt-6 flex items-center justify-center gap-5 text-xs text-white/30">
-          <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> 30 días gratis</span>
-          <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> Sin permanencia</span>
-          <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> Google Play</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ CONTACTO ═══════ -->
-  <section id="contacto" class="relative py-20 sm:py-28 content-wrapper">
-    <div class="section-divider"></div>
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-16">
-      <div class="text-center animate-fade-up">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-300"><i data-lucide="mail" class="w-3.5 h-3.5"></i> Contacto</div>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-gradient-white leading-tight">Hablemos</h2>
-        <p class="mt-5 text-base sm:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">¿Eres empresa, flota o micro-influencer? Cuéntanos tu caso y te ayudamos.</p>
-      </div>
-      <div class="mt-14 grid gap-6 lg:grid-cols-5">
-        <div class="lg:col-span-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-7 sm:p-8 animate-fade-up">
-          <h3 class="text-lg font-bold mb-6">Escríbenos</h3>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div><label class="mb-1.5 block text-xs font-medium text-white/45 tracking-wide uppercase">Nombre</label><input id="fname" class="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40 focus:ring-2 focus:ring-brand-400/10 placeholder:text-white/25" placeholder="Tu nombre"></div>
-            <div><label class="mb-1.5 block text-xs font-medium text-white/45 tracking-wide uppercase">Email</label><input id="femail" type="email" class="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40 focus:ring-2 focus:ring-brand-400/10 placeholder:text-white/25" placeholder="tu@email.com"></div>
-          </div>
-          <div class="mt-4"><label class="mb-1.5 block text-xs font-medium text-white/45 tracking-wide uppercase">Mensaje</label><textarea id="fmsg" class="min-h-[140px] w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40 focus:ring-2 focus:ring-brand-400/10 placeholder:text-white/25 resize-none" placeholder="Ej: Soy micro-influencer y quiero probar 14 días / Tengo 3 licencias y 6 conductores..."></textarea></div>
-          <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-            <a id="mailtoLink" href="mailto:taxi360barcelona@gmail.com" class="flex-1 flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3.5 text-sm font-bold text-dark-950 shadow-[0_0_30px_rgba(251,191,36,0.2)] hover:shadow-[0_0_50px_rgba(251,191,36,0.35)] hover:-translate-y-0.5 transition-all btn-shine"><i data-lucide="mail" class="w-4 h-4"></i> Enviar por Email</a>
-          </div>
-          <p class="mt-3 text-xs text-white/30 text-center">Esto abre tu correo. La web no guarda datos.</p>
-        </div>
-        <div class="lg:col-span-2 space-y-5 animate-fade-up delay-100">
-          <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-7">
-            <h3 class="text-base font-bold mb-4">Contacto directo</h3>
-            <div class="space-y-4">
-              <a href="mailto:taxi360barcelona@gmail.com" class="flex items-center gap-3 group"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] group-hover:border-brand-400/20 transition-colors"><i data-lucide="mail" class="w-4 h-4 text-white/50 group-hover:text-brand-300 transition-colors"></i></div><div><div class="text-xs text-white/35">Email</div><div class="text-sm text-white/70 group-hover:text-white transition-colors">taxi360barcelona@gmail.com</div></div></a>
-              <a href="https://www.linkedin.com/company/taxi360/?viewAsMember=true" target="_blank" class="flex items-center gap-3 group"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] group-hover:border-brand-400/20 transition-colors"><i data-lucide="linkedin" class="w-4 h-4 text-white/50 group-hover:text-brand-300 transition-colors"></i></div><div><div class="text-xs text-white/35">LinkedIn</div><div class="text-sm text-white/70 group-hover:text-white transition-colors">Taxi360</div></div></a>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-white/[0.06] bg-white/[0.03] glass p-7">
-            <div class="flex items-center gap-2 mb-3"><i data-lucide="download" class="w-4 h-4 text-brand-300"></i><h3 class="text-base font-bold">Descarga directa</h3></div>
-            <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="w-full flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 px-6 py-3 text-xs font-bold text-dark-950 btn-shine">TaxiNeto360 — Probar 30 días gratis</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ FOOTER ═══════ -->
-  <footer class="footer-top-glow border-t border-white/[0.06] py-10 content-wrapper">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex items-center gap-3"><div class="h-8 w-8 rounded-lg border border-white/10 bg-white/5 overflow-hidden"><img src="assets/perfil_2_unico_sin_bordes.jpg" alt="TaxiNeto360" class="h-full w-full object-cover"></div><div><span class="text-sm font-bold">Taxi360</span><span class="text-sm text-white/30"> · Claridad para el día a día del taxi.</span></div></div>
-        <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/35">
-          <a href="#herramientas" class="hover:text-white/70 transition-colors">Herramientas</a>
-          <a href="#precios" class="hover:text-white/70 transition-colors">Precios</a>
-          <a href="#seguridad" class="hover:text-white/70 transition-colors">Seguridad</a>
-          <a href="#quienes" class="hover:text-white/70 transition-colors">Sobre nosotros</a>
-          <a href="#afiliados" class="hover:text-white/70 transition-colors">Afiliados</a>
-          <a href="#contacto" class="hover:text-white/70 transition-colors">Contacto</a>
-        </div>
-      </div>
-      <!-- Legal -->
-      <div class="mt-6 pt-6 border-t border-white/[0.06] flex flex-wrap justify-between items-center gap-4 text-xs text-white/30">
-        <span>© 2025 TaxiNeto360. Todos los derechos reservados.</span>
-        <div class="flex flex-wrap gap-x-5 gap-y-1">
-          <a href="https://pau111000.github.io/taxineto360-web/politica-privacidad-taxineto360.html" class="hover:text-[#C8A84E] transition-colors">Privacidad</a>
-          <a href="https://pau111000.github.io/taxineto360-web/terminos.html" class="hover:text-[#C8A84E] transition-colors">Términos</a>
-          <a href="https://pau111000.github.io/taxineto360-web/eliminar-cuenta.html" class="hover:text-[#C8A84E] transition-colors">Eliminar cuenta</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ═══════ MOBILE CTA ═══════ -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-    <div class="bg-dark-950/90 backdrop-blur-xl border-t border-white/[0.06] px-4 py-3">
-      <div class="flex gap-2.5">
-        <a href="https://play.google.com/store/apps/details?id=com.taxi360.taxineto360" target="_blank" class="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-brand-300 to-brand-500 py-3 text-xs font-bold text-dark-950 btn-shine"><i data-lucide="download" class="w-3.5 h-3.5"></i> Probar 30 días gratis</a>
-        <a href="#contacto" class="flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] py-3 text-xs font-semibold text-white/90">Contacto <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
       </div>
     </div>
   </div>
-  <div class="h-16 lg:hidden"></div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Sola app</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">14<span class="stat-suffix">+</span></div>
+      <div class="stat-label">Herramientas incluidas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30</div>
+      <div class="stat-label">Días gratis de prueba</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Formatos de exportación</div>
+    </div>
+  </div>
+</div>
 
-    // Particle animation background
-    function createParticles() {
-      const container = document.getElementById('particlesContainer');
-      for (let i = 0; i < 18; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-        container.appendChild(particle);
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">El problema</div>
+      <h2 class="section-title">¿Sabes realmente<br/>cuánto ganas?</h2>
+      <p class="section-sub">El sector del taxi tiene un problema claro: falta de control real sobre los ingresos netos.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="problem-card-icon">👤</span>
+        <div class="problem-card-label">Autónomos</div>
+        <div class="problem-card-title">Calculan a ojo</div>
+        <p class="problem-card-text">No saben cuánto ganan de verdad después de comisiones, gasolina y gastos del día a día.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card-icon">💼</span>
+        <div class="problem-card-label">Asalariados</div>
+        <div class="problem-card-title">Sin datos propios</div>
+        <p class="problem-card-text">Dependen de las liquidaciones de su jefe. No tienen forma de comprobarlas ni datos propios.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card-icon">🏢</span>
+        <div class="problem-card-label">Pequeñas empresas</div>
+        <div class="problem-card-title">Hojas de cálculo</div>
+        <p class="problem-card-text">Gestionan todo en Excel. Errores, conflictos y falta de transparencia interna constante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- FEATURES -->
+<section class="section" id="herramientas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">14+ herramientas</div>
+      <h2 class="section-title">Todo lo que necesitas.<br/>En una sola app.</h2>
+      <p class="section-sub">Herramientas Premium diseñadas específicamente para el taxi real. No apps genéricas.</p>
+    </div>
+    <div class="features-grid" style="margin-bottom: 2px;">
+      <div class="feature-card premium">
+        <span class="feature-icon">🗺️</span>
+        <div class="feature-name">Mapa Taxi</div>
+        <p class="feature-desc">Navegación exclusiva para taxistas con carriles bus-taxi en tiempo real. Burbuja flotante al cambiar de app. Pantalla siempre activa. Rutas optimizadas para BCN y MAD.</p>
+      </div>
+      <div class="feature-card premium">
+        <span class="feature-icon">✈️</span>
+        <div class="feature-name">LlegadasDay!</div>
+        <p class="feature-desc">Vuelos aterrizando en tiempo real en BCN y MAD. Todas las terminales, cancelaciones y estado actualizado al instante. Sé el primero en la parada del aeropuerto.</p>
+      </div>
+      <div class="feature-card premium">
+        <span class="feature-icon">🚕</span>
+        <div class="feature-name">TarifaGo!</div>
+        <p class="feature-desc">Calcula tarifas y comisiones al instante. Normativa Barcelona, suplementos, tráfico en tiempo real. Compatible con Google Maps y Waze. Para cualquier turista sin problemas.</p>
+      </div>
+      <div class="feature-card premium">
+        <span class="feature-icon">📊</span>
+        <div class="feature-name">KPI Intelligence</div>
+        <p class="feature-desc">Tus números reales: rendimiento, tendencias y datos claros de cada jornada. Ve cómo rindes de verdad con gráficas e indicadores profesionales.</p>
+      </div>
+      <div class="feature-card premium">
+        <span class="feature-icon">💵</span>
+        <div class="feature-name">Neto Apps</div>
+        <p class="feature-desc">¿Cuánto te queda después de Uber, Cabify y comisiones? Aquí lo sabes al céntimo. Comparativa limpia y transparente de tus ganancias netas.</p>
+      </div>
+      <div class="feature-card premium">
+        <span class="feature-icon">📋</span>
+        <div class="feature-name">Mi Historial</div>
+        <p class="feature-desc">Todo tu historial de jornadas guardado de forma segura. Consulta cualquier día en segundos. Tu memoria profesional siempre disponible.</p>
+      </div>
+    </div>
+    <div class="features-extras" style="margin-bottom: 2px;">
+      <div class="extra-card">
+        <span class="extra-icon">📅</span>
+        <div class="extra-name">MiCalendario!</div>
+        <p class="extra-desc">Calendario de descansos y turnos con planificación inteligente para tu jornada.</p>
+      </div>
+      <div class="extra-card">
+        <span class="extra-icon">⛽</span>
+        <div class="extra-name">MiGasolinera!</div>
+        <p class="extra-desc">Control de repostajes y gasto en combustible. Optimiza tus costes de combustible.</p>
+      </div>
+      <div class="extra-card">
+        <span class="extra-icon">🚦</span>
+        <div class="extra-name">Tráfico!</div>
+        <p class="extra-desc">Estado del tráfico en tiempo real con radares fijos y móviles. Conduce tranquilo.</p>
+      </div>
+      <div class="extra-card">
+        <span class="extra-icon">🚂</span>
+        <div class="extra-name">Trenes &amp; Barcos!</div>
+        <p class="extra-desc">Llegadas en tiempo real de trenes y barcos. Amplía tus puntos de recogida.</p>
+      </div>
+    </div>
+    <div class="features-extras">
+      <div class="extra-card">
+        <span class="extra-icon">📸</span>
+        <div class="extra-name">Evidencias con fotos</div>
+        <p class="extra-desc">Fotos de VISA y taxímetro como prueba real ante cualquier reclamación. Listo para auditorías.</p>
+      </div>
+      <div class="extra-card">
+        <span class="extra-icon">🧾</span>
+        <div class="extra-name">Liquidaciones automáticas</div>
+        <p class="extra-desc">Tus ingresos netos resumidos sin hacer cuentas a mano. Cierre automático de jornada.</p>
+      </div>
+      <div class="extra-card">
+        <span class="extra-icon">📥</span>
+        <div class="extra-name">Exportación universal</div>
+        <p class="extra-desc">Descarga en CSV, PDF, Excel y HTML. Listo para tu gestoría o para cualquier uso.</p>
+      </div>
+      <div class="extra-card fleet">
+        <span class="extra-icon">👥</span>
+        <div class="extra-name">Conductores (Flota)</div>
+        <p class="extra-desc">Dashboard centralizado por conductor. Historial y KPIs individuales para flotas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .extra-card.fleet::before {
+    content: 'FLOTA'; position: absolute; top: 16px; right: 16px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    color: #a78bfa; background: rgba(167,139,250,0.1);
+    border: 1px solid rgba(167,139,250,0.25); padding: 3px 8px; border-radius: 100px;
+  }
+  .extra-card { position: relative; overflow: hidden; }
+</style>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- SCREENSHOTS (visual marquee) -->
+<section class="screenshots-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Capturas reales</div>
+      <h2 class="section-title">Visual limpio.<br/>Fácil de usar.</h2>
+      <p class="section-sub">Así se ve el día a día con TaxiNeto360: registro rápido, cierres con evidencias, liquidaciones automáticas y KPIs de rendimiento.</p>
+    </div>
+  </div>
+  <div style="overflow:hidden; mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);">
+    <div class="screenshots-scroll">
+      <!-- First set -->
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🗓️</div>
+          <div class="screenshot-title">Jornada del día</div>
+        </div>
+        <div class="screenshot-label">Jornada + LlegadasDay!</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📊</div>
+          <div class="screenshot-title">KPI Intelligence</div>
+        </div>
+        <div class="screenshot-label">KPI + neto tras apps</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🚕</div>
+          <div class="screenshot-title">TarifaGo!</div>
+        </div>
+        <div class="screenshot-label">Tarifas al instante</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">✈️</div>
+          <div class="screenshot-title">LlegadasDay!</div>
+        </div>
+        <div class="screenshot-label">Vuelos en tiempo real</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📥</div>
+          <div class="screenshot-title">Exportación</div>
+        </div>
+        <div class="screenshot-label">CSV, PDF, Excel, HTML</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📸</div>
+          <div class="screenshot-title">Evidencias</div>
+        </div>
+        <div class="screenshot-label">Fotos VISA + taxímetro</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🗺️</div>
+          <div class="screenshot-title">Mapa Taxi</div>
+        </div>
+        <div class="screenshot-label">Carriles bus-taxi BCN/MAD</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">💵</div>
+          <div class="screenshot-title">Neto Apps</div>
+        </div>
+        <div class="screenshot-label">Ganancias tras Uber/Cabify</div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🗓️</div>
+          <div class="screenshot-title">Jornada del día</div>
+        </div>
+        <div class="screenshot-label">Jornada + LlegadasDay!</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📊</div>
+          <div class="screenshot-title">KPI Intelligence</div>
+        </div>
+        <div class="screenshot-label">KPI + neto tras apps</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🚕</div>
+          <div class="screenshot-title">TarifaGo!</div>
+        </div>
+        <div class="screenshot-label">Tarifas al instante</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">✈️</div>
+          <div class="screenshot-title">LlegadasDay!</div>
+        </div>
+        <div class="screenshot-label">Vuelos en tiempo real</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📥</div>
+          <div class="screenshot-title">Exportación</div>
+        </div>
+        <div class="screenshot-label">CSV, PDF, Excel, HTML</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">📸</div>
+          <div class="screenshot-title">Evidencias</div>
+        </div>
+        <div class="screenshot-label">Fotos VISA + taxímetro</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">🗺️</div>
+          <div class="screenshot-title">Mapa Taxi</div>
+        </div>
+        <div class="screenshot-label">Carriles bus-taxi BCN/MAD</div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-screen">
+          <div class="screenshot-icon">💵</div>
+          <div class="screenshot-title">Neto Apps</div>
+        </div>
+        <div class="screenshot-label">Ganancias tras Uber/Cabify</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- PRICING -->
+<section class="section" id="precios">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Precios</div>
+      <h2 class="section-title">Simple y transparente.</h2>
+      <p class="section-sub">Sin sorpresas. Sin letra pequeña. 30 días gratis con acceso total a todas las herramientas.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Individual -->
+      <div class="pricing-card">
+        <div class="pricing-name">Individual</div>
+        <div class="pricing-price">
+          <div class="pricing-amount"><span>€</span>9,99</div>
+        </div>
+        <div class="pricing-period">al mes · sin permanencia</div>
+        <div class="pricing-trial">✦ 30 días gratis de prueba</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>14+ herramientas incluidas</li>
+          <li>LlegadasDay! + TarifaGo! + KPI + Neto Apps</li>
+          <li>MiCalendario! + MiGasolinera! + Tráfico!</li>
+          <li>Trenes! + Barcos! + Historial completo</li>
+          <li>Evidencias con fotos</li>
+          <li>Exportación CSV / PDF / Excel / HTML</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="btn-primary" target="_blank" rel="noopener" style="width:100%; justify-content:center;">
+          Empezar gratis
+        </a>
+      </div>
+
+      <!-- Flota (featured) -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Para empresas</div>
+        <div class="pricing-name">Flota</div>
+        <div class="pricing-price">
+          <div class="pricing-amount"><span>€</span>59,99</div>
+        </div>
+        <div class="pricing-period">al mes · sin permanencia</div>
+        <div class="pricing-trial">✦ 30 días gratis de prueba</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Todo el plan Individual incluido</li>
+          <li>Gestión de múltiples conductores</li>
+          <li>Dashboard centralizado por conductor</li>
+          <li>Historial y KPIs por conductor</li>
+          <li>Reportes automáticos</li>
+          <li>Exportación avanzada por flota</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="btn-primary" target="_blank" rel="noopener" style="width:100%; justify-content:center;">
+          Empezar gratis
+        </a>
+      </div>
+
+      <!-- Creador de contenido -->
+      <div class="pricing-card">
+        <div class="pricing-name">Creador de contenido</div>
+        <div class="pricing-price">
+          <div class="pricing-amount"><span>€</span>9,99</div>
+        </div>
+        <div class="pricing-period">al mes · sin permanencia</div>
+        <div class="pricing-trial">✦ 30 + 14 días gratis extra</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>14 días extra en lugar de 7</li>
+          <li>Acceso completo a las 14+ herramientas</li>
+          <li>LlegadasDay!, TarifaGo!, KPI y más</li>
+          <li>A cambio de crear un vídeo con tu feedback</li>
+          <li>Para micro-influencers del sector taxi</li>
+        </ul>
+        <a href="mailto:taxi360barcelona@gmail.com" class="btn-ghost" style="width:100%; justify-content:center;">
+          Contactar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- SECURITY -->
+<section class="section" id="seguridad">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Seguridad</div>
+      <h2 class="section-title">Tus datos son<br/>solo tuyos.</h2>
+      <p class="section-sub">Construida con los mismos estándares de seguridad que usan las grandes empresas.</p>
+    </div>
+    <div class="security-grid">
+      <div class="security-card">
+        <span class="security-icon">🔒</span>
+        <div class="security-title">Nadie accede a tus datos</div>
+        <p class="security-text">Sin acceso de ningún tercero a tus registros ni a tus ganancias. Tu información es completamente privada y solo tuya.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">🚫</span>
+        <div class="security-title">No se comparten sin tu permiso</div>
+        <p class="security-text">Nunca compartimos tus datos con terceros sin tu consentimiento explícito. Tú decides quién ve qué en todo momento.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">🛡️</span>
+        <div class="security-title">Información protegida</div>
+        <p class="security-text">Encriptación de nivel empresarial en tránsito y en reposo. Tus datos están seguros ante cualquier situación.</p>
+      </div>
+      <div class="security-card">
+        <span class="security-icon">📸</span>
+        <div class="security-title">Evidencias verificables</div>
+        <p class="security-text">Fotos de VISA y taxímetro como prueba real de cada jornada. Preparado para auditorías y reclamaciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ABOUT -->
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="section-label" style="text-align:center; margin-bottom:48px;">Sobre Taxi360</div>
+    <div class="about-card">
+      <div>
+        <h2 class="about-title">Taxi360 nace para dar <em style="color:var(--gold); font-style:italic;">claridad</em> al taxi.</h2>
+        <p class="about-text">Creemos que cada conductor merece saber cuánto gana de verdad, sin depender de nadie. Una herramienta simple, directa y pensada 100% para el taxi real de Barcelona.</p>
+        <p class="about-text">No somos una startup genérica: somos una herramienta construida desde el conocimiento real del sector, para resolver problemas reales del día a día.</p>
+        <div class="about-values">
+          <span class="about-value">Simplicidad</span>
+          <span class="about-value">Claridad</span>
+          <span class="about-value">Control</span>
+          <span class="about-value">Seguridad</span>
+          <span class="about-value">Honestidad</span>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="about-stat-num">14+</div>
+          <div class="about-stat-label">herramientas profesionales incluidas en una sola suscripción</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">30</div>
+          <div class="about-stat-label">días gratis de prueba con acceso total, sin tarjeta de crédito</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">4</div>
+          <div class="about-stat-label">formatos de exportación: CSV, PDF, Excel y HTML</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- AFFILIATES -->
+<section class="section" id="afiliados">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Afiliados</div>
+      <h2 class="section-title">Trae taxistas,<br/>gana meses gratis.</h2>
+      <p class="section-sub">Por cada taxista que se registre con tu código, ganas 30 días gratis acumulables. Hasta 12 meses — un año entero sin pagar.</p>
+    </div>
+    <div class="affiliates-grid">
+      <div class="aff-left">
+        <div class="aff-steps">
+          <div class="aff-step">
+            <div class="aff-step-line">
+              <div class="aff-num">1</div>
+              <div class="aff-connector"></div>
+            </div>
+            <div class="aff-content">
+              <div class="aff-step-title">Obtén tu código de afiliado</div>
+              <p class="aff-step-text">Desde la app o contactando por WhatsApp o email. Es inmediato y gratuito.</p>
+            </div>
+          </div>
+          <div class="aff-step">
+            <div class="aff-step-line">
+              <div class="aff-num">2</div>
+              <div class="aff-connector"></div>
+            </div>
+            <div class="aff-content">
+              <div class="aff-step-title">Comparte con otros taxistas</div>
+              <p class="aff-step-text">Cuando se registran con tu código, entran con 30 días gratis de prueba.</p>
+            </div>
+          </div>
+          <div class="aff-step">
+            <div class="aff-step-line">
+              <div class="aff-num">3</div>
+              <div class="aff-connector"></div>
+            </div>
+            <div class="aff-content">
+              <div class="aff-step-title">Gana 30 días gratis por cada uno</div>
+              <p class="aff-step-text">Acumulable hasta 12 meses gratuitos (máx. 12 referidos). Un año entero sin pagar.</p>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:taxi360barcelona@gmail.com" class="btn-primary" style="margin-top: 36px;">
+          Escribir a nuestro agente
+        </a>
+      </div>
+      <div class="aff-card">
+        <div class="aff-benefit">
+          <span class="aff-benefit-icon">🎁</span>
+          <div>
+            <div class="aff-benefit-title">30 días gratis por referido</div>
+            <p class="aff-benefit-text">Cada taxista que se registre con tu código te regala 1 mes gratis de suscripción automáticamente.</p>
+          </div>
+        </div>
+        <div class="aff-benefit">
+          <span class="aff-benefit-icon">📈</span>
+          <div>
+            <div class="aff-benefit-title">Acumulable sin límite mensual</div>
+            <p class="aff-benefit-text">Los meses se acumulan automáticamente. Cuantos más taxistas traigas, más meses gratis disfrutas.</p>
+          </div>
+        </div>
+        <div class="aff-benefit">
+          <span class="aff-benefit-icon">👑</span>
+          <div>
+            <div class="aff-benefit-title">Máximo 12 meses gratis</div>
+            <p class="aff-benefit-text">Puedes acumular hasta 12 meses gratuitos (12 referidos). Un año entero sin pagar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list" style="max-width: 760px; margin: 0 auto;">
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Cuánto cuesta TaxiNeto360?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">El plan Individual cuesta 9,99€/mes y el plan Flota (empresas) cuesta 59,99€/mes. Ambos incluyen 30 días de prueba gratuita con acceso total a todas las herramientas. Si eres divulgador de contenido taxi (micro-influencer), tienes 30 días gratis + 14 días extra a cambio de crear un vídeo con tu feedback.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Qué herramientas incluye la app?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Más de 14 herramientas: LlegadasDay! (vuelos en tiempo real), TarifaGo! (tarifas y comisiones), KPI Intelligence (rendimiento), Neto Apps (ganancias netas tras plataformas), Mapa Taxi, MiCalendario!, MiGasolinera!, Tráfico!, Trenes!, Barcos!, Historial completo, Evidencias con fotos, Liquidaciones automáticas y Exportación CSV/PDF/Excel/HTML.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Es segura mi información?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí. Nadie tiene acceso a tus registros ni a tus ganancias. Nunca compartimos tus datos con terceros. Usamos encriptación de nivel empresarial. Tú decides siempre quién ve qué.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Funciona fuera de Barcelona?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">La mayoría de herramientas funcionan en toda España y están disponibles offline. Las funciones de aeropuerto y carriles bus-taxi están optimizadas para Barcelona (BCN) y Madrid (MAD), con expansión en curso.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Puedo cancelar en cualquier momento?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí, sin permanencia ni penalizaciones. Puedes cancelar cuando quieras desde Google Play. No hay contratos de largo plazo.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          ¿Cómo funciona el programa de afiliados?
+          <span class="faq-chevron">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Por cada taxista que se registre con tu código de afiliado, ganas 30 días gratis acumulables. Puedes acumular hasta 12 meses gratuitos (12 referidos). Activa tu código desde la app o contáctanos por WhatsApp/email.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- CONTACT CTA -->
+<section class="section" id="contacto">
+  <div class="container">
+    <div class="cta-block">
+      <div class="cta-title">¿Listo para empezar?</div>
+      <p class="cta-sub">30 días gratis. Sin tarjeta de crédito. Sin permanencia. Solo descarga y empieza.</p>
+      <div class="cta-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.taxineto360" class="btn-primary" target="_blank" rel="noopener">
+          ▶ Probar gratis en Google Play
+        </a>
+        <a href="https://wa.me/34000000000" class="btn-whatsapp" target="_blank" rel="noopener">
+          💬 WhatsApp
+        </a>
+        <a href="mailto:taxi360barcelona@gmail.com" class="btn-ghost">
+          ✉ Email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">
+      <div class="footer-logo-icon">🚕</div>
+      TaxiNeto360
+    </a>
+    <div class="footer-links">
+      <a href="#herramientas">Herramientas</a>
+      <a href="#precios">Precios</a>
+      <a href="#seguridad">Seguridad</a>
+      <a href="#afiliados">Afiliados</a>
+      <a href="mailto:taxi360barcelona@gmail.com">Contacto</a>
+    </div>
+    <div class="footer-legal">
+      <span>© 2025 TaxiNeto360. Todos los derechos reservados.</span>
+      <a href="https://pau111000.github.io/taxineto360-web/politica-privacidad-taxineto360.html" target="_blank" rel="noopener">Privacidad</a>
+      <a href="https://pau111000.github.io/taxineto360-web/terminos.html" target="_blank" rel="noopener">Términos</a>
+      <a href="https://pau111000.github.io/taxineto360-web/eliminar-cuenta.html" target="_blank" rel="noopener">Eliminar cuenta</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Counter animation
+  const counters = document.querySelectorAll('.stat-num');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const suffix = el.querySelector('.stat-suffix');
+        const suffixText = suffix ? suffix.textContent : '';
+        const target = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
+        let count = 0;
+        const step = target / 30;
+        const timer = setInterval(() => {
+          count = Math.min(count + step, target);
+          el.textContent = (Number.isInteger(target) ? Math.round(count) : count.toFixed(0)) + suffixText;
+          if (count >= target) clearInterval(timer);
+        }, 30);
+        observer.unobserve(el);
       }
-    }
-    createParticles();
-
-    // Navbar scroll effect
-    window.addEventListener('scroll',()=>{
-      const n=document.getElementById('navbar');
-      if(window.scrollY>20){
-        n.classList.remove('bg-transparent');
-        n.classList.add('bg-dark-950/80','backdrop-blur-xl','border-b','border-white/[0.06]','shadow-[0_4px_30px_rgba(0,0,0,0.3)]')
-      }else{
-        n.classList.add('bg-transparent');
-        n.classList.remove('bg-dark-950/80','backdrop-blur-xl','border-b','border-white/[0.06]','shadow-[0_4px_30px_rgba(0,0,0,0.3)]')
-      }
     });
+  }, { threshold: 0.5 });
+  counters.forEach(c => observer.observe(c));
 
-    // Mobile menu
-    document.getElementById('mobileMenuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
-    document.querySelectorAll('.mlink').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('hidden')));
-
-    // Counter animation
-    function animateCounter(el, target) {
-      let current = 0;
-      const increment = target / 30;
-      const interval = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          el.textContent = target;
-          clearInterval(interval);
-        } else {
-          el.textContent = Math.floor(current);
-        }
-      }, 50);
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(8,8,8,0.95)';
+    } else {
+      nav.style.background = 'rgba(8,8,8,0.85)';
     }
+  });
+</script>
 
-    // Intersection Observer for scroll reveals
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (entry.target.classList.contains('animate-fade-up')) {
-            entry.target.style.animationPlayState = 'running';
-          }
-          if (entry.target.classList.contains('counter')) {
-            const target = parseInt(entry.target.dataset.target);
-            animateCounter(entry.target, target);
-            obs.unobserve(entry.target);
-          }
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-fade-up').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      obs.observe(el);
-    });
-
-    document.querySelectorAll('.counter').forEach(el => obs.observe(el));
-
-    // FAQ toggle
-    function toggleFaq(b) {
-      const a = b.nextElementSibling;
-      const c = b.querySelector('.faq-chevron');
-      a.classList.toggle('open');
-      c.classList.toggle('open');
-    }
-
-    // Email form
-    function updateMailto() {
-      const n = document.getElementById('fname')?.value || '';
-      const e = document.getElementById('femail')?.value || '';
-      const m = document.getElementById('fmsg')?.value || '';
-      const s = encodeURIComponent('Taxi360 — Contacto');
-      const b = encodeURIComponent(`Nombre: ${n}\nEmail: ${e}\n\nMensaje:\n${m}`);
-      const l = document.getElementById('mailtoLink');
-      if (l) l.href = `mailto:taxi360barcelona@gmail.com?subject=${s}&body=${b}`;
-    }
-
-    ['fname', 'femail', 'fmsg'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener('input', updateMailto);
-    });
-
-    // Video mute toggle
-    function toggleMute() {
-      const video = document.querySelector('video');
-      const icon = document.getElementById('muteIcon');
-      video.muted = !video.muted;
-      icon.setAttribute('data-lucide', video.muted ? 'volume-x' : 'volume-2');
-      lucide.createIcons();
-    }
-  </script>
-
-  <!-- Tochat WhatsApp Agent Widget -->
-  <script defer src="https://widget.tochat.be/bundle.js?key=331a1540-6f23-4f6f-9a74-b3f6b6dccf98"></script>
 </body>
 </html>
