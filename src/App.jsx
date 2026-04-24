@@ -63,6 +63,30 @@ const BRAND = {
 /* ─── CONTENT DATA ─── */
 const TOOLS_ALL = [
   {
+    id: "taximo",
+    title: "Táximo IA",
+    emoji: "🤖",
+    description: "Tu copiloto con inteligencia artificial. Pregúntale lo que necesites: vuelos, barcos, trenes, cuánto llevas ganado, qué herramienta usar… Respuestas al momento sin soltar el volante.",
+    badge: "NUEVO",
+    badgeColor: "brand",
+  },
+  {
+    id: "gps",
+    title: "GPS Taxi",
+    emoji: "🗺️",
+    description: "Navegación GPS en tiempo real pensada para el taxi. Tráfico, rutas óptimas y puntos de interés. Compatible con Google Maps y Waze.",
+    badge: "PREMIUM",
+    badgeColor: "brand",
+  },
+  {
+    id: "radares",
+    title: "Radares",
+    emoji: "📡",
+    description: "Alertas de radares fijos, de tramo y semafóricos con datos públicos oficiales (DGT, SCT, ayuntamientos). Más de 1.000 radares en Cataluña.",
+    badge: "PREMIUM",
+    badgeColor: "brand",
+  },
+  {
     id: "llegadas",
     title: "LlegadasDay!",
     emoji: "✈️",
@@ -191,16 +215,16 @@ const PRICING_PLANS = [
     period: "/mes",
     description: "Para taxistas autónomos",
     features: [
-      "14+ herramientas incluidas",
+      "35+ herramientas incluidas",
+      "Modo Caza 🎯 + Cerebro Predictivo 🧠",
       "LlegadasDay! + TarifaGo! + KPI + Neto Apps",
-      "MiCalendario! + MiGasolinera! + Tráfico!",
-      "Trenes! + Barcos! + Historial completo",
-      "Evidencias con fotos + Exportación CSV/PDF/Excel",
+      "Trenes! + Barcos! + Radares + Tráfico",
+      "Anticipación IA + Widget + Exportación CSV/PDF",
     ],
-    trialDays: 7,
-    trialText: "7 días de prueba gratuita",
+    trialDays: 14,
+    trialText: "14 días de prueba gratuita",
     popular: true,
-    cta: "Probar 7 días gratis",
+    cta: "Probar 14 días gratis",
   },
   {
     id: "flota",
@@ -216,10 +240,10 @@ const PRICING_PLANS = [
       "Historial y KPIs por conductor",
       "Reportes automáticos + Exportación avanzada",
     ],
-    trialDays: 7,
-    trialText: "7 días de prueba gratuita",
+    trialDays: 14,
+    trialText: "14 días de prueba gratuita",
     popular: false,
-    cta: "Probar 7 días gratis",
+    cta: "Probar 14 días gratis",
   },
   {
     id: "influencer",
@@ -229,14 +253,14 @@ const PRICING_PLANS = [
     period: "",
     description: "Para divulgadores de contenido taxi",
     features: [
-      "14 días gratis en lugar de 7",
-      "Acceso completo a las 14+ herramientas",
-      "LlegadasDay!, TarifaGo!, KPI, Trenes!, Barcos!...",
+      "30 días gratis (el doble que el trial normal)",
+      "Acceso completo a las 35+ herramientas",
+      "Modo Caza 🎯, Cerebro IA 🧠, Anticipación",
       "Exportación CSV/PDF/Excel",
       "Único compromiso: crear un vídeo con tu feedback honesto",
     ],
-    trialDays: 14,
-    trialText: "14 días gratis (en lugar de 7)",
+    trialDays: 30,
+    trialText: "30 días gratis (en lugar de 14)",
     isInfluencer: true,
     cta: "Contacta con nosotros",
   },
@@ -247,7 +271,7 @@ const USE_CASES = [
     role: "Taxista autónomo",
     description: "Sabes cuánto ganas, cuánto gastas y cuánto te queda. Controla vuelos, trenes, eventos y tráfico desde tu móvil.",
     price: "9,99€/mes",
-    tools: "14+ herramientas: LlegadasDay!, TarifaGo!, MisEventos!, Tráfico!...",
+    tools: "35+ herramientas: Modo Caza, Cerebro IA, LlegadasDay!, TarifaGo!, Anticipación...",
   },
   {
     role: "Conductor asalariado",
@@ -288,7 +312,7 @@ const FEATURES_SECURITY = [
 
 const TRUST_STATS = [
   { number: "1", label: "Una sola app" },
-  { number: "14+", label: "Herramientas incluidas" },
+  { number: "35+", label: "Herramientas incluidas" },
   { number: "7", label: "Días gratis" },
   { number: "3", label: "Formatos de exportación" },
 ];
@@ -297,12 +321,12 @@ const FAQ_ITEMS = [
   {
     question: "¿Cuánto cuesta TaxiNeto360?",
     answer:
-      "El plan Individual cuesta 9,99€/mes y el plan Flota (empresas) cuesta 59,99€/mes. El plan individual te ofrece 7 días de prueba gratuita con acceso total a todas las herramientas. Si eres divulgador de contenido taxi (micro-influencer), tienes 14 días gratis a cambio de crear un vídeo con tu feedback.",
+      "El plan Individual cuesta 9,99€/mes y el plan Flota (empresas) cuesta 59,99€/mes. Ambos planes incluyen 14 días de prueba gratuita con acceso total a las 35+ herramientas. Si eres divulgador de contenido taxi (micro-influencer), tienes 30 días gratis a cambio de crear un vídeo con tu feedback.",
   },
   {
     question: "¿Qué herramientas incluye?",
     answer:
-      "Más de 14 herramientas: LlegadasDay! (vuelos en tiempo real), TarifaGo! (cálculo de tarifas), KPI Intelligence (análisis de rendimiento), Neto Apps (neto real tras comisiones), Historial (registro de jornadas), MiCalendario! (turnos y descansos), MisEventos! (eventos con demanda de taxi), MiCiudad! (puntos de interés con GPS), MiGasolinera! (gasolineras baratas), Trenes! (llegadas a Sants), Barcos! (cruceros y ferris), Tráfico! (estado en tiempo real), Tradúceme! (traductor con voz), Conductores (gestión de flota), evidencias con fotos, liquidaciones automáticas y exportación CSV/PDF/Excel. Además, MisEventos!, MiCiudad! y Tradúceme! son GRATIS.",
+      "Más de 35 herramientas: Táximo IA (copiloto con inteligencia artificial), Cerebro Predictivo (IA Claude que analiza toda la ciudad), Modo Caza (guía en tiempo real para no ir vacío), GPS Taxi (navegación con heatmap de demanda), Radares (alertas de radares fijos), LlegadasDay! (vuelos en tiempo real), TarifaGo! (cálculo de tarifas), KPI Intelligence (análisis de rendimiento), Neto Apps (neto real tras comisiones), Historial, MiCalendario!, MisEventos! (eventos con demanda de taxi), MiCiudad!, MiGasolinera!, Trenes! (llegadas a Sants), Barcos! (cruceros y ferris), Tráfico!, Tradúceme!, Anticipación IA, Widget de pantalla, Android Auto, Conductores (gestión de flota), evidencias con fotos, liquidaciones automáticas y exportación CSV/PDF/Excel.",
   },
   {
     question: "¿Qué es el plan Micro-Influencer?",
@@ -682,7 +706,7 @@ const Navbar = () => {
 
         <div className="hidden sm:block">
           <PrimaryButton href={BRAND.taxiNeto360Play}>
-            Probar 7 días gratis
+            Probar 14 días gratis
             <ArrowRight className="w-4 h-4" />
           </PrimaryButton>
         </div>
@@ -723,7 +747,7 @@ const Navbar = () => {
                 Contacto
               </a>
               <PrimaryButton href={BRAND.taxiNeto360Play} className="w-full">
-                Probar 7 días gratis
+                Probar 14 días gratis
               </PrimaryButton>
             </Container>
           </motion.div>
@@ -758,7 +782,7 @@ const MobileCTABar = () => {
         >
           <Container>
             <PrimaryButton href={BRAND.taxiNeto360Play} className="w-full">
-              Probar 7 días gratis
+              Probar 14 días gratis
               <ArrowRight className="w-4 h-4" />
             </PrimaryButton>
           </Container>
@@ -810,7 +834,7 @@ export default function App() {
               className="text-lg sm:text-xl text-white/60 mb-8 leading-relaxed"
             >
               Vuelos, trenes, barcos, eventos, tráfico, traductor, gasolineras y mucho más.<br />
-              14+ herramientas en una sola app. 3 de ellas totalmente gratis.
+              35+ herramientas en una sola app. 3 de ellas totalmente gratis.
             </motion.p>
 
             <motion.div
@@ -821,7 +845,7 @@ export default function App() {
             >
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <PrimaryButton href={BRAND.taxiNeto360Play} className="w-full sm:w-auto">
-                  Probar 7 días gratis
+                  Probar 14 días gratis
                   <ArrowRight className="w-4 h-4" />
                 </PrimaryButton>
                 <GhostButton href={BRAND.linkedinUrl} target="_blank" className="w-full sm:w-auto">
@@ -838,7 +862,7 @@ export default function App() {
               className="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-white/50"
             >
               <span className="flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-emerald-400" /> 7 días gratis
+                <Check className="w-4 h-4 text-emerald-400" /> 14 días gratis
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
@@ -1035,7 +1059,7 @@ export default function App() {
             className="mb-6"
           >
             <SectionTitle subtitle="Todo lo que necesitas para dominar tu jornada, en una sola app">
-              14+ Herramientas que trabajan por ti
+              17+ Herramientas que trabajan por ti
             </SectionTitle>
           </motion.div>
 
@@ -1447,11 +1471,11 @@ export default function App() {
                 </h2>
                 <p className="text-lg text-white/50 mb-8 max-w-2xl mx-auto">
                   Sin cuentas manuales. Sin líos. Sin sorpresas.<br />
-                  14+ herramientas profesionales en una sola app, desde 9,99€/mes. 3 herramientas gratis.
+                  35+ herramientas profesionales en una sola app, desde 9,99€/mes. 3 herramientas gratis.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <PrimaryButton href={BRAND.taxiNeto360Play}>
-                    Probar 7 días gratis
+                    Probar 14 días gratis
                     <ArrowRight className="w-4 h-4" />
                   </PrimaryButton>
                   <GhostButton href={`mailto:${BRAND.contactEmail}`}>
@@ -1468,7 +1492,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="relative border-t border-white/[0.06] bg-gradient-to-b from-transparent to-white/[0.02] py-12">
         <Container>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img src={logo} alt={BRAND.name} className="w-8 h-8 rounded-lg" />
@@ -1532,6 +1556,38 @@ export default function App() {
                   <a href={`mailto:${BRAND.contactEmail}`} className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2">
                     <Mail className="w-4 h-4" />
                     {BRAND.contactEmail}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
+                Legal
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="privacidad.html" className="text-sm text-white/60 hover:text-white transition-colors">
+                    Política de privacidad
+                  </a>
+                </li>
+                <li>
+                  <a href="terminos.html" className="text-sm text-white/60 hover:text-white transition-colors">
+                    Términos y condiciones
+                  </a>
+                </li>
+                <li>
+                  <a href="eliminar-cuenta.html" className="text-sm text-white/60 hover:text-white transition-colors">
+                    Eliminar cuenta
+                  </a>
+                </li>
+                <li>
+                  <a href="cookies.html" className="text-sm text-white/60 hover:text-white transition-colors">
+                    Cookies
+                  </a>
+                </li>
+                <li>
+                  <a href="aviso-legal.html" className="text-sm text-white/60 hover:text-white transition-colors">
+                    Aviso legal
                   </a>
                 </li>
               </ul>
