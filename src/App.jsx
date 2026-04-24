@@ -253,14 +253,14 @@ const PRICING_PLANS = [
     period: "",
     description: "Para divulgadores de contenido taxi",
     features: [
-      "30 días gratis (el doble que el trial normal)",
+      "14 días gratis adicionales (28 días en total)",
       "Acceso completo a las 35+ herramientas",
       "Modo Caza 🎯, Cerebro IA 🧠, Anticipación",
       "Exportación CSV/PDF/Excel",
       "Único compromiso: crear un vídeo con tu feedback honesto",
     ],
-    trialDays: 30,
-    trialText: "30 días gratis (en lugar de 14)",
+    trialDays: 14,
+    trialText: "14 días gratis adicionales",
     isInfluencer: true,
     cta: "Contacta con nosotros",
   },
@@ -321,7 +321,7 @@ const FAQ_ITEMS = [
   {
     question: "¿Cuánto cuesta TaxiNeto360?",
     answer:
-      "El plan Individual cuesta 9,99€/mes y el plan Flota (empresas) cuesta 59,99€/mes. Ambos planes incluyen 14 días de prueba gratuita con acceso total a las 35+ herramientas. Si eres divulgador de contenido taxi (micro-influencer), tienes 30 días gratis a cambio de crear un vídeo con tu feedback.",
+      "El plan Individual cuesta 9,99€/mes y el plan Flota (empresas) cuesta 59,99€/mes. Ambos planes incluyen 14 días de prueba gratuita con acceso total a las 35+ herramientas. Si eres divulgador de contenido taxi (micro-influencer), recibes 14 días adicionales gratis a cambio de crear un vídeo con tu feedback.",
   },
   {
     question: "¿Qué herramientas incluye?",
