@@ -3,150 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eliminar cuenta · TaxiNeto360</title>
-  <meta name="description" content="Cómo eliminar tu cuenta y tus datos de TaxiNeto360 conforme al RGPD y los requisitos de Google Play.">
+  <title>Eliminar cuenta y datos — Taxi360 / TaxiNeto360</title>
+  <meta name="description" content="Solicita la eliminación de tu cuenta y datos personales de TaxiNeto360.">
   <meta name="theme-color" content="#070b14">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { DEFAULT: '#070b14' },
+            accent: '#C8A84E',
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: #070b14; color: #e2e8f0; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
-    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(7,11,20,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
-    .topbar a { color: #fbbf24; text-decoration: none; font-weight: 600; }
-    .topbar .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; }
-    .topbar img { width: 32px; height: 32px; border-radius: 8px; }
-    h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .subtitle { color: #94a3b8; margin-bottom: 40px; font-size: 15px; }
-    h2 { font-size: 22px; font-weight: 700; color: #fff; margin: 40px 0 16px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
-    h2:first-of-type { border-top: none; padding-top: 0; }
-    h3 { font-size: 17px; font-weight: 600; color: #fbbf24; margin: 24px 0 12px; }
-    p, li { color: #cbd5e1; margin-bottom: 12px; font-size: 15px; }
-    ul, ol { padding-left: 24px; margin-bottom: 16px; }
-    li { margin-bottom: 8px; }
-    strong { color: #fff; }
-    a { color: #fbbf24; }
-    a:hover { color: #fcd34d; }
-    .step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px; margin: 16px 0; position: relative; }
-    .step-number { position: absolute; top: 24px; right: 24px; width: 36px; height: 36px; border-radius: 50%; background: #fbbf24; color: #000; font-weight: 800; display: flex; align-items: center; justify-content: center; }
-    .step h3 { margin-top: 0; padding-right: 60px; }
-    .badge { display: inline-block; padding: 4px 12px; background: rgba(16,185,129,0.15); color: #34d399; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; }
-    .email-card { background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,191,36,0.02)); border: 1px solid rgba(251,191,36,0.25); border-radius: 12px; padding: 24px; margin: 24px 0; text-align: center; }
-    .email-card h3 { color: #fbbf24; margin: 0 0 8px; }
-    .email-card a { font-size: 22px; font-weight: 700; color: #fcd34d; }
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    th { background: rgba(255,255,255,0.03); color: #fbbf24; font-weight: 600; }
-    .footer-note { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #64748b; font-size: 13px; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
   </style>
 </head>
-<body>
-  <div class="topbar">
-    <a href="./" class="brand">
-      <img src="assets/favicon.png" alt="Taxi360">
-      <span>TaxiNeto360</span>
-    </a>
-    <a href="./">← Volver al inicio</a>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-[#070b14] border-b border-white/5 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="assets/favicon.png" alt="Taxi360" class="w-8 h-8 rounded-lg" onerror="this.style.display='none'">
+        <span class="text-white font-bold text-lg tracking-tight">Taxi<span class="text-[#C8A84E]">360</span></span>
+      </a>
+      <nav class="flex items-center gap-4">
+        <a href="/" class="text-gray-400 hover:text-white text-sm font-medium transition-colors">← Volver al inicio</a>
+        <a href="privacidad.html" class="text-gray-400 hover:text-[#C8A84E] text-sm font-medium transition-colors">Privacidad</a>
+        <a href="terminos.html" class="text-gray-400 hover:text-[#C8A84E] text-sm font-medium transition-colors">Términos</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="max-w-2xl mx-auto px-4 py-12">
+
+    <!-- HEADER -->
+    <div class="text-center mb-10">
+      <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </div>
+      <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
+        Acción irreversible
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Eliminar cuenta y datos</h1>
+      <p class="text-gray-600">Puedes solicitar la eliminación completa de tu cuenta y todos tus datos personales de TaxiNeto360.</p>
+    </div>
+
+    <!-- OPCIÓN 1: Desde la app -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-6">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-green-600 font-bold text-lg">1</span>
+        </div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Desde la propia app <span class="ml-1 text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">Recomendado</span></h2>
+          <p class="text-gray-600 text-sm mb-3">La forma más rápida. La eliminación es inmediata y automática.</p>
+          <ol class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0 mt-0.5">1</span>
+              Abre TaxiNeto360 e inicia sesión con tu cuenta.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0 mt-0.5">2</span>
+              Ve a <strong>Ajustes → Privacidad</strong>.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0 mt-0.5">3</span>
+              Pulsa <strong>"Eliminar cuenta y datos"</strong>.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0 mt-0.5">4</span>
+              Confirma la acción. Todos tus datos serán eliminados de forma permanente.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPCIÓN 2: Por email -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-6">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-blue-600 font-bold text-lg">2</span>
+        </div>
+        <div class="w-full">
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Solicitud por correo electrónico</h2>
+          <p class="text-gray-600 text-sm mb-4">Si no puedes acceder a la app, envíanos un correo. Procesaremos tu solicitud en un plazo máximo de <strong>30 días</strong>.</p>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-4">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Información que debes incluir en tu correo:</p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li class="flex items-center gap-2"><span class="text-[#C8A84E]">→</span> Correo electrónico de tu cuenta TaxiNeto360</li>
+              <li class="flex items-center gap-2"><span class="text-[#C8A84E]">→</span> Asunto: <code class="bg-white border border-gray-200 px-1.5 py-0.5 rounded text-xs">Solicitud de eliminación de cuenta</code></li>
+              <li class="flex items-center gap-2"><span class="text-[#C8A84E]">→</span> Confirmación de que deseas eliminar TODOS tus datos</li>
+            </ul>
+          </div>
+
+          <a href="mailto:taxi360barcelona@gmail.com?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta&body=Hola%2C%0A%0ASolicito%20la%20eliminaci%C3%B3n%20completa%20de%20mi%20cuenta%20y%20todos%20mis%20datos%20de%20TaxiNeto360.%0A%0AMi%20correo%20de%20cuenta%3A%20%5BTU%20CORREO%5D%0A%0AGracias."
+             class="inline-flex items-center gap-2 bg-[#C8A84E] text-[#070b14] font-bold px-5 py-2.5 rounded-xl hover:bg-[#d4b560] transition-colors text-sm">
+            ✉ Enviar correo de solicitud
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUÉ SE ELIMINA -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-6">
+      <h2 class="text-lg font-bold text-gray-900 mb-4">¿Qué datos se eliminan?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Cuenta (email + contraseña)
+        </div>
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Historial completo de jornadas
+        </div>
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Datos económicos y liquidaciones
+        </div>
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Fotos adjuntas
+        </div>
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Archivos CSV exportados
+        </div>
+        <div class="flex items-center gap-3 text-sm text-gray-600">
+          <span class="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-500 flex-shrink-0">✕</span>
+          Datos de empresa y licencia
+        </div>
+      </div>
+      <div class="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
+        <p class="text-sm text-red-700 font-medium">⚠ Esta acción es <strong>permanente e irreversible</strong>. Una vez eliminada la cuenta no es posible recuperar ningún dato.</p>
+      </div>
+    </div>
+
+    <!-- PLAZOS -->
+    <div class="bg-[#070b14] rounded-2xl p-6 md:p-8 shadow-sm">
+      <h2 class="text-lg font-bold text-white mb-3">Plazos de eliminación</h2>
+      <div class="space-y-3 text-sm text-gray-300">
+        <div class="flex items-start gap-3">
+          <span class="text-[#C8A84E] font-bold">Desde la app:</span>
+          <span>Inmediato — los datos se borran en el acto de Firebase Authentication, Firestore y Storage.</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-[#C8A84E] font-bold">Por email:</span>
+          <span>Máximo 30 días naturales desde la recepción de tu solicitud. Te confirmaremos por correo cuando se complete.</span>
+        </div>
+      </div>
+      <div class="mt-5 pt-5 border-t border-white/10">
+        <p class="text-gray-400 text-sm">¿Dudas? Escríbenos a <a href="mailto:taxi360barcelona@gmail.com" class="text-[#C8A84E] hover:underline">taxi360barcelona@gmail.com</a></p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="container">
-    <h1>Eliminar cuenta y datos</h1>
-    <p class="subtitle">Nombre del desarrollador: <strong>Paula Sánchez (Taxi360)</strong> · App: <strong>TaxiNeto360</strong> (<code>com.taxi360.taxineto360</code>)</p>
-
-    <p>En TaxiNeto360 respetamos tu derecho al control total de tus datos. Puedes solicitar la eliminación de tu cuenta y de todos los datos asociados en cualquier momento y de forma gratuita. A continuación te explicamos cómo.</p>
-
-    <h2>Opción 1 · Desde la App <span class="badge">RECOMENDADA</span></h2>
-
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3>Abre TaxiNeto360 en tu móvil</h3>
-      <p>Asegúrate de tener instalada la última versión desde Google Play.</p>
+  <!-- FOOTER -->
+  <footer class="bg-[#070b14] border-t border-white/5 mt-16 py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gray-500 text-xs">© 2025 TaxiNeto360. Todos los derechos reservados.</p>
+      <div class="flex justify-center gap-4 mt-3 text-xs">
+        <a href="privacidad.html" class="text-gray-500 hover:text-gray-300 transition-colors">Privacidad</a>
+        <span class="text-gray-700">·</span>
+        <a href="terminos.html" class="text-gray-500 hover:text-gray-300 transition-colors">Términos</a>
+        <span class="text-gray-700">·</span>
+        <a href="eliminar-cuenta.html" class="text-[#C8A84E] hover:underline">Eliminar cuenta</a>
+        <span class="text-gray-700">·</span>
+        <a href="/" class="text-gray-500 hover:text-gray-300 transition-colors">Inicio</a>
+      </div>
     </div>
+  </footer>
 
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3>Ve a Ajustes</h3>
-      <p>Pulsa sobre el icono de tu perfil o el menú ⚙️ en la esquina superior para acceder a los ajustes de la cuenta.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3>Pulsa "Eliminar cuenta"</h3>
-      <p>Dentro de Ajustes → Cuenta → "Eliminar mi cuenta". Te pediremos que confirmes tu contraseña o que completes una reautenticación con Google.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-number">4</div>
-      <h3>Confirma</h3>
-      <p>Tras confirmar, se iniciará el proceso de borrado. Recibirás un correo de confirmación en la dirección asociada a tu cuenta.</p>
-    </div>
-
-    <h2>Opción 2 · Por email</h2>
-
-    <div class="email-card">
-      <h3>Envíanos un correo</h3>
-      <p>Asunto: <strong>"Eliminar cuenta"</strong></p>
-      <p>Cuerpo: incluye el email asociado a tu cuenta.</p>
-      <p style="margin-top: 16px;"><a href="mailto:taxi360barcelona@gmail.com?subject=Eliminar%20cuenta">taxi360barcelona@gmail.com</a></p>
-    </div>
-
-    <p>Para verificar tu identidad y evitar solicitudes fraudulentas, te pediremos confirmar la petición desde el email registrado en la App. Tramitaremos la solicitud en un plazo máximo de 30 días naturales (habitualmente en 48-72h).</p>
-
-    <h2>¿Qué datos se eliminan?</h2>
-    <p>Al eliminar tu cuenta se suprimen los siguientes datos personales:</p>
-    <table>
-      <thead>
-        <tr><th>Categoría</th><th>Qué incluye</th><th>Plazo máximo</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Perfil</td><td>Nombre, email, ciudad, licencia, foto.</td><td>30 días</td></tr>
-        <tr><td>Jornadas</td><td>Todos los registros económicos, tickets subidos, arqueos.</td><td>30 días*</td></tr>
-        <tr><td>Ubicación</td><td>Cualquier dato de posición asociado a tu cuenta.</td><td>30 días</td></tr>
-        <tr><td>Historial Táximo IA</td><td>Mensajes y conversaciones (servidor).</td><td>30 días</td></tr>
-        <tr><td>Suscripción Firestore</td><td>Registros de acceso, tokens, App Check.</td><td>30 días</td></tr>
-        <tr><td>Notificaciones</td><td>Token FCM, preferencias push.</td><td>Inmediato</td></tr>
-        <tr><td>Evidencias (fotos)</td><td>Imágenes subidas como prueba.</td><td>30 días</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size: 13px; color: #94a3b8;">* Si has solicitado facturas fiscales, mantendremos <strong>sólo los datos fiscalmente exigidos</strong> (importe, concepto, fecha, CIF) bloqueados y sin uso durante el plazo mínimo obligatorio por la Agencia Tributaria (hasta 6 años), conforme al art. 30 del Código de Comercio y el art. 66 LGT. Estos datos están aislados y no se usan para ninguna otra finalidad.</p>
-
-    <h2>¿Qué se conserva y por cuánto tiempo?</h2>
-    <p>Por obligaciones legales o con fines legítimos estrictos, se conserva lo siguiente:</p>
-    <ul>
-      <li><strong>Logs de seguridad anonimizados</strong> (intentos de login, actividad API-Abuse) — 90 días.</li>
-      <li><strong>Copias de seguridad cifradas</strong> — se sobrescriben automáticamente en un plazo máximo de 90 días.</li>
-      <li><strong>Datos fiscales ya facturados</strong> — el tiempo mínimo exigido por la normativa tributaria española (hasta 6 años si hay factura).</li>
-    </ul>
-
-    <h2>Cancelar la suscripción antes de eliminar</h2>
-    <p>Eliminar tu cuenta en TaxiNeto360 <strong>no cancela automáticamente tu suscripción en Google Play</strong>. Para cancelarla:</p>
-    <ol>
-      <li>Abre la app <strong>Google Play Store</strong>.</li>
-      <li>Pulsa tu foto de perfil → <strong>Pagos y suscripciones</strong> → <strong>Suscripciones</strong>.</li>
-      <li>Selecciona <em>TaxiNeto360</em> → <strong>Cancelar suscripción</strong>.</li>
-      <li>Sigue las indicaciones en pantalla.</li>
-    </ol>
-    <p>Más info: <a href="https://support.google.com/googleplay/answer/7018481" target="_blank" rel="noopener noreferrer">support.google.com/googleplay/answer/7018481</a></p>
-
-    <h2>Tus derechos</h2>
-    <p>Además del derecho de supresión ("derecho al olvido"), conforme al RGPD tienes derecho a:</p>
-    <ul>
-      <li>Acceder a tus datos.</li>
-      <li>Rectificarlos si son inexactos.</li>
-      <li>Portarlos (exporta tus jornadas en CSV/Excel/PDF desde la App antes de eliminar la cuenta).</li>
-      <li>Limitar u oponerte al tratamiento.</li>
-      <li>Retirar tu consentimiento en cualquier momento.</li>
-      <li>Presentar una reclamación ante la <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos (AEPD)</a>.</li>
-    </ul>
-    <p>Más detalles en nuestra <a href="privacidad.html">Política de Privacidad</a>.</p>
-
-    <h2>¿Dudas?</h2>
-    <p>Si tienes cualquier problema con la eliminación de tu cuenta, escríbenos a <a href="mailto:taxi360barcelona@gmail.com">taxi360barcelona@gmail.com</a> y te ayudaremos personalmente.</p>
-
-    <p class="footer-note">© 2026 Taxi360 · TaxiNeto360 — Todos los derechos reservados.</p>
-  </div>
 </body>
 </html>

@@ -3,163 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Términos y Condiciones · TaxiNeto360</title>
-  <meta name="description" content="Condiciones generales de uso y contratación de TaxiNeto360.">
+  <title>Términos y Condiciones — Taxi360 / TaxiNeto360</title>
+  <meta name="description" content="Términos y Condiciones de uso de TaxiNeto360.">
   <meta name="theme-color" content="#070b14">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: { brand: { DEFAULT: '#070b14' }, accent: '#C8A84E', primary: '#22c55e' }
+        }
+      }
+    }
+  </script>
   <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: #070b14; color: #e2e8f0; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; }
-    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(7,11,20,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
-    .topbar a { color: #fbbf24; text-decoration: none; font-weight: 600; }
-    .topbar .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; }
-    .topbar img { width: 32px; height: 32px; border-radius: 8px; }
-    h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .subtitle { color: #94a3b8; margin-bottom: 40px; font-size: 15px; }
-    h2 { font-size: 22px; font-weight: 700; color: #fff; margin: 40px 0 16px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
-    h2:first-of-type { border-top: none; padding-top: 0; }
-    h3 { font-size: 17px; font-weight: 600; color: #fbbf24; margin: 24px 0 12px; }
-    p, li { color: #cbd5e1; margin-bottom: 12px; font-size: 15px; }
-    ul, ol { padding-left: 24px; margin-bottom: 16px; }
-    li { margin-bottom: 8px; }
-    strong { color: #fff; }
-    a { color: #fbbf24; }
-    a:hover { color: #fcd34d; }
-    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 20px; margin: 16px 0; }
-    .card-warn { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.25); border-radius: 12px; padding: 20px; margin: 16px 0; }
-    .footer-note { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #64748b; font-size: 13px; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .legal-section { scroll-margin-top: 80px; }
+    .toc-link { transition: color 0.2s; }
+    .toc-link:hover { color: #C8A84E; }
   </style>
 </head>
-<body>
-  <div class="topbar">
-    <a href="./" class="brand">
-      <img src="assets/favicon.png" alt="Taxi360">
-      <span>TaxiNeto360</span>
-    </a>
-    <a href="./">← Volver al inicio</a>
+<body class="bg-gray-50 text-gray-800">
+  <header class="sticky top-0 z-50 bg-[#070b14] border-b border-white/5 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="assets/favicon.png" alt="Taxi360" class="w-8 h-8 rounded-lg" onerror="this.style.display='none'">
+        <span class="text-white font-bold text-lg tracking-tight">Taxi<span class="text-[#C8A84E]">360</span></span>
+      </a>
+      <nav class="flex items-center gap-4">
+        <a href="/" class="text-gray-400 hover:text-white text-sm font-medium transition-colors">← Volver al inicio</a>
+        <a href="privacidad.html" class="text-gray-400 hover:text-[#C8A84E] text-sm font-medium transition-colors">Privacidad</a>
+        <a href="eliminar-cuenta.html" class="text-gray-400 hover:text-[#C8A84E] text-sm font-medium transition-colors">Eliminar cuenta</a>
+      </nav>
+    </div>
+  </header>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <div class="inline-flex items-center gap-2 bg-[#C8A84E]/10 border border-[#C8A84E]/30 text-[#C8A84E] text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">Documento legal</div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Términos y Condiciones</h1>
+      <p class="text-gray-500 text-sm">Última actualización: <strong>abril 2025</strong> · Aplicación: <strong>TaxiNeto360</strong></p>
+      <p class="mt-3 text-gray-600">Al descargar o usar TaxiNeto360 aceptas estos términos. Si no estás de acuerdo, no utilices la aplicación.</p>
+    </div>
+    <nav class="bg-white border border-gray-200 rounded-2xl p-6 mb-10 shadow-sm">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">Índice de contenidos</p>
+      <ol class="space-y-1 text-sm">
+        <li><a href="#descripcion" class="toc-link text-gray-600">1. Descripción del servicio</a></li>
+        <li><a href="#uso" class="toc-link text-gray-600">2. Uso aceptable</a></li>
+        <li><a href="#cuenta" class="toc-link text-gray-600">3. Cuenta de usuario</a></li>
+        <li><a href="#suscripcion" class="toc-link text-gray-600">4. Plan gratuito y funciones premium</a></li>
+        <li><a href="#datos" class="toc-link text-gray-600">5. Datos y privacidad</a></li>
+        <li><a href="#ubicacion" class="toc-link text-gray-600">6. Permisos — Ubicación y cámara</a></li>
+        <li><a href="#mapa-taxi" class="toc-link text-gray-600">7. Aviso legal — Mapa Taxi</a></li>
+        <li><a href="#propiedad" class="toc-link text-gray-600">8. Propiedad intelectual</a></li>
+        <li><a href="#responsabilidad" class="toc-link text-gray-600">9. Limitación de responsabilidad</a></li>
+        <li><a href="#rescision" class="toc-link text-gray-600">10. Cancelación de cuenta</a></li>
+        <li><a href="#cambios" class="toc-link text-gray-600">11. Modificaciones</a></li>
+        <li><a href="#ley" class="toc-link text-gray-600">12. Ley aplicable</a></li>
+        <li><a href="#contacto" class="toc-link text-gray-600">13. Contacto</a></li>
+      </ol>
+    </nav>
+    <div class="space-y-8">
+      <section id="descripcion" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">1</span>Descripción del servicio</h2>
+        <div class="text-gray-600 space-y-2 text-sm leading-relaxed">
+          <p><strong>TaxiNeto360</strong> es una aplicación móvil para Android destinada a conductores de taxi y empresas de transporte. Permite registrar jornadas de trabajo (inicio/fin de turno, horas, km, servicios), calcular liquidaciones, consultar historial, adjuntar fotos, exportar CSV y recibir alertas de controles de velocidad (Mapa Taxi) con carácter meramente informativo.</p>
+        </div>
+      </section>
+      <section id="uso" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">2</span>Uso aceptable</h2>
+        <div class="text-gray-600 space-y-2 text-sm leading-relaxed">
+          <p>El usuario se compromete a usar la app únicamente para fines profesionales legítimos, no intentar acceder a datos de otros usuarios, no realizar ingeniería inversa ni sobrecargar nuestros servicios, y mantener sus credenciales de acceso seguras.</p>
+        </div>
+      </section>
+      <section id="cuenta" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">3</span>Cuenta de usuario</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>Para usar TaxiNeto360 debes registrarte con correo y contraseña. La sesión es persistente hasta que cierres sesión manualmente. Eres responsable de la seguridad de tu cuenta.</p></div>
+      </section>
+      <section id="suscripcion" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">4</span>Plan gratuito y funciones premium</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>TaxiNeto360 ofrece funcionalidades básicas de forma gratuita. Determinadas funciones avanzadas pueden requerir suscripción de pago gestionada a través de Google Play y sujeta a sus políticas de reembolso.</p></div>
+      </section>
+      <section id="datos" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">5</span>Datos y privacidad</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>El tratamiento de tus datos se rige por nuestra <a href="privacidad.html" class="text-[#C8A84E] hover:underline font-medium">Política de Privacidad</a>. Tus datos operativos (jornadas, km, liquidaciones) son tuyos y se almacenan en Firebase (región Europa) de forma segura.</p></div>
+      </section>
+      <section id="ubicacion" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">6</span>Permisos — Ubicación y cámara</h2>
+        <div class="text-gray-600 space-y-2 text-sm leading-relaxed">
+          <p><strong>Ubicación:</strong> solo cuando activas el módulo GPS Taxi. Se procesa localmente y no se almacena en servidores externos.</p>
+          <p><strong>Cámara / Galería:</strong> solo cuando adjuntas fotos a una jornada.</p>
+          <p><strong>Almacenamiento:</strong> para exportar y guardar CSV. Puedes revocar permisos desde los ajustes de tu dispositivo Android.</p>
+        </div>
+      </section>
+      <section id="mapa-taxi" class="legal-section bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-600 text-sm font-bold flex items-center justify-center">7</span>Aviso legal — Mapa Taxi (alertas de control de velocidad)</h2>
+        <div class="text-gray-700 space-y-3 text-sm leading-relaxed">
+          <p>La función <strong>Mapa Taxi</strong> muestra alertas de controles de velocidad fijos y móviles con carácter <strong>meramente informativo</strong>. TaxiNeto360 no garantiza la exactitud ni la vigencia de dicha información. El conductor es el único responsable de respetar la normativa de tráfico vigente.</p>
+          <p>La app <strong>no utiliza ningún sistema de detección o inhibición de señales de radar</strong>, funciones prohibidas por la legislación española (art. 16 Ley sobre Tráfico, Circulación de Vehículos a Motor y Seguridad Vial). TaxiNeto360 actúa únicamente como plataforma de información geográfica, similar a otras aplicaciones de navegación disponibles en el mercado.</p>
+        </div>
+      </section>
+      <section id="propiedad" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">8</span>Propiedad intelectual</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>TaxiNeto360 y todos sus componentes (diseño, código, logotipos, textos) son propiedad de sus desarrolladores y están protegidos por la legislación de propiedad intelectual. Queda prohibida su reproducción sin autorización expresa.</p></div>
+      </section>
+      <section id="responsabilidad" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">9</span>Limitación de responsabilidad</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>TaxiNeto360 se proporciona "tal cual". No garantizamos disponibilidad ininterrumpida ni nos hacemos responsables de pérdidas de datos por mal uso. La información de Mapa Taxi es orientativa y no asumimos responsabilidad derivada de su uso al conducir.</p></div>
+      </section>
+      <section id="rescision" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">10</span>Cancelación de cuenta</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>Puedes eliminar tu cuenta desde <em>Ajustes → Privacidad → Eliminar cuenta y datos</em> dentro de la app, o a través de nuestra página de <a href="eliminar-cuenta.html" class="text-[#C8A84E] hover:underline font-medium">Eliminación de cuenta</a>. Una vez eliminada, no es posible recuperar los datos.</p></div>
+      </section>
+      <section id="cambios" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">11</span>Modificaciones</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>Podemos actualizar estos términos en cualquier momento. El uso continuado de la app tras la publicación de cambios implica la aceptación de los nuevos términos.</p></div>
+      </section>
+      <section id="ley" class="legal-section bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/15 text-[#C8A84E] text-sm font-bold flex items-center justify-center">12</span>Ley aplicable</h2>
+        <div class="text-gray-600 text-sm leading-relaxed"><p>Estos términos se rigen por la legislación española. Las partes se someten a los juzgados del domicilio del usuario conforme a la normativa de consumidores y usuarios.</p></div>
+      </section>
+      <section id="contacto" class="legal-section bg-[#070b14] rounded-2xl p-6 md:p-8 shadow-sm">
+        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-[#C8A84E]/20 text-[#C8A84E] text-sm font-bold flex items-center justify-center">13</span>Contacto</h2>
+        <div class="text-gray-300 text-sm leading-relaxed">
+          <p>Para cualquier consulta sobre estos términos:</p>
+          <p class="mt-3"><a href="mailto:taxi360barcelona@gmail.com" class="inline-flex items-center gap-2 bg-[#C8A84E] text-[#070b14] font-bold px-5 py-2.5 rounded-xl hover:bg-[#d4b560] transition-colors text-sm">✉ taxi360barcelona@gmail.com</a></p>
+        </div>
+      </section>
+    </div>
   </div>
-
-  <div class="container">
-    <h1>Términos y Condiciones</h1>
-    <p class="subtitle">Última actualización: 23 de abril de 2026</p>
-
-    <div class="card">
-      <p>Estos Términos y Condiciones (en adelante, los "Términos") regulan el acceso y uso de la aplicación móvil <strong>TaxiNeto360</strong> (en adelante, "la App") y del sitio web <strong>taxi360.com</strong> (en adelante, "el Sitio"), titularidad de Paula Sánchez (Taxi360), con domicilio en Barcelona, España, y correo de contacto <a href="mailto:taxi360barcelona@gmail.com">taxi360barcelona@gmail.com</a> (en adelante, "Taxi360" o "nosotros").</p>
-      <p>Al registrarte, acceder o utilizar la App aceptas expresamente estos Términos. Si no estás de acuerdo, no utilices la App.</p>
+  <footer class="bg-[#070b14] border-t border-white/5 mt-16 py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gray-500 text-xs">© 2025 TaxiNeto360. Todos los derechos reservados.</p>
+      <div class="flex justify-center gap-4 mt-3 text-xs">
+        <a href="privacidad.html" class="text-gray-500 hover:text-gray-300 transition-colors">Privacidad</a>
+        <span class="text-gray-700">·</span>
+        <a href="terminos.html" class="text-[#C8A84E] hover:underline">Términos</a>
+        <span class="text-gray-700">·</span>
+        <a href="eliminar-cuenta.html" class="text-gray-500 hover:text-gray-300 transition-colors">Eliminar cuenta</a>
+        <span class="text-gray-700">·</span>
+        <a href="/" class="text-gray-500 hover:text-gray-300 transition-colors">Inicio</a>
+      </div>
     </div>
-
-    <h2>1. Objeto</h2>
-    <p>TaxiNeto360 es una herramienta digital dirigida a profesionales del sector del taxi en España (autónomos, asalariados, titulares de licencia y empresas de taxi). Ofrece un conjunto de herramientas orientadas a:</p>
-    <ul>
-      <li>Registro y cálculo automático de jornadas y liquidaciones (TarifaGo!, Neto Apps, KPI Intelligence).</li>
-      <li>Información en tiempo real de fuentes públicas: vuelos (LlegadasDay!), trenes (Trenes!), barcos (Barcos!), tráfico (Tráfico!), gasolineras (MiGasolinera!), eventos (MisEventos!).</li>
-      <li>Alertas de radares fijos, de tramo y semafóricos con datos públicos oficiales.</li>
-      <li>Navegación GPS Taxi y Mapa Taxi, integración con Google Maps y Waze.</li>
-      <li>Copiloto con inteligencia artificial (Táximo IA).</li>
-      <li>Gestión de flotas (plan Flota).</li>
-    </ul>
-
-    <h2>2. Registro de usuario</h2>
-    <p>Para utilizar la App es necesario crear una cuenta. El usuario declara:</p>
-    <ul>
-      <li>Ser mayor de 18 años.</li>
-      <li>Tener capacidad legal para contratar.</li>
-      <li>Que los datos proporcionados son veraces y actualizados.</li>
-      <li>Ser el único responsable de la confidencialidad de sus credenciales.</li>
-    </ul>
-
-    <h2>3. Planes y suscripciones</h2>
-    <div class="card">
-      <p><strong>Plan Individual:</strong> 9,99 €/mes. 7 días de prueba gratuita.</p>
-      <p><strong>Plan Flota:</strong> 59,99 €/mes. 7 días de prueba gratuita. Incluye gestión multi-conductor.</p>
-      <p><strong>Plan Micro-Influencer:</strong> 14 días gratis, sujetos a la creación de un vídeo de feedback.</p>
-      <p><strong>Herramientas gratuitas:</strong> MisEventos!, MiCiudad! y Tradúceme! sin suscripción.</p>
-    </div>
-    <p>Los precios incluyen el IVA aplicable. La contratación, renovación, cambio y cancelación de planes se gestiona íntegramente a través de <strong>Google Play Store</strong>, conforme a sus propios términos. Nosotros no almacenamos ni procesamos datos de tu tarjeta.</p>
-
-    <h3>3.1 Táximo IA — Freemium</h3>
-    <p>El uso del copiloto Táximo IA está sujeto a una cuota diaria para evitar abusos y controlar costes:</p>
-    <ul>
-      <li><strong>Usuarios gratuitos:</strong> hasta 5 mensajes diarios a Táximo IA. Al agotarse, Táximo sigue respondiendo en modo offline (conocimiento local de la App).</li>
-      <li><strong>Usuarios Premium:</strong> hasta 20 mensajes diarios a Táximo IA.</li>
-      <li>La cuota se renueva cada 24 horas.</li>
-    </ul>
-    <p>Estas cuotas pueden ajustarse en el futuro con aviso previo.</p>
-
-    <h3>3.2 Periodo de prueba y cancelación</h3>
-    <p>Puedes cancelar tu prueba o suscripción en cualquier momento desde <em>Google Play → Suscripciones</em>. Si cancelas durante el periodo de prueba, no se te cobrará. Si cancelas tras el cobro, mantendrás el acceso Premium hasta el final del periodo ya pagado.</p>
-
-    <h3>3.3 Derecho de desistimiento</h3>
-    <p>De conformidad con la Ley General para la Defensa de los Consumidores y Usuarios, al tratarse de contenido digital que se ejecuta al momento, al iniciar la prueba gratuita o la suscripción consientes expresamente el comienzo inmediato de la ejecución y reconoces la pérdida del derecho de desistimiento una vez consumido el servicio. No obstante, <strong>contamos con 7 días de prueba gratuita</strong> precisamente para que valores el servicio sin coste.</p>
-
-    <h2>4. Uso correcto de la App</h2>
-    <p>Te comprometes a utilizar la App de forma lícita y conforme a estos Términos. Queda expresamente prohibido:</p>
-    <ul>
-      <li>Utilizar la App con fines fraudulentos o ilícitos.</li>
-      <li>Introducir datos falsos o de terceros sin su consentimiento.</li>
-      <li>Realizar ingeniería inversa, descompilar, desensamblar o modificar el código.</li>
-      <li>Intentar vulnerar la seguridad, los rate-limits o el sistema de cuotas.</li>
-      <li>Usar Táximo IA para obtener contenido que incite al odio, violencia o discriminación, o para obtener instrucciones para actividades ilegales.</li>
-      <li>Compartir tu cuenta con terceros fuera de los supuestos previstos en el plan Flota.</li>
-      <li>Utilizar bots, scrapers o cualquier sistema automatizado sin autorización.</li>
-    </ul>
-    <p>El incumplimiento podrá dar lugar a la suspensión o cancelación inmediata de la cuenta sin reembolso.</p>
-
-    <h2>5. Responsabilidad sobre los datos introducidos</h2>
-    <p>Los datos económicos (ingresos, gastos, jornadas, tickets) son introducidos directamente por el usuario. TaxiNeto360 ofrece herramientas de cálculo y exportación, pero <strong>el usuario es el único responsable</strong> de la veracidad, exactitud y finalidad fiscal o laboral de dichos datos.</p>
-
-    <h2>6. Información de terceros — Descargo de responsabilidad</h2>
-    <div class="card-warn">
-      <p>La App muestra información en tiempo real procedente de fuentes públicas y terceros (Aena, Renfe, Port de Barcelona, DGT, SCT, TomTom, Google Maps, OpenStreetMap, AEMET, ayuntamientos). Esta información:</p>
-      <ul>
-        <li>Puede contener retrasos, errores o no estar disponible por causas ajenas a nosotros.</li>
-        <li>Tiene carácter meramente orientativo e informativo.</li>
-        <li>El usuario es el único responsable de verificarla antes de tomar decisiones relevantes.</li>
-      </ul>
-      <p><strong>Radares:</strong> los datos provienen de fuentes públicas oficiales (DGT, SCT, ayuntamientos) y se facilitan como ayuda informativa. La App <strong>no sustituye la atención a las señales de tráfico ni exime al conductor del cumplimiento de los límites de velocidad</strong>. Es responsabilidad exclusiva del conductor respetar la normativa de circulación.</p>
-      <p><strong>Táximo IA:</strong> las respuestas del copiloto IA son sugerencias orientativas generadas por un modelo de lenguaje y pueden contener imprecisiones. No sustituyen el criterio profesional del conductor ni el asesoramiento fiscal, legal o laboral.</p>
-      <p><strong>Uso durante la conducción:</strong> no interactúes con la App mientras conduces. Usa los accesorios de manos libres y respeta el Reglamento General de Circulación.</p>
-    </div>
-
-    <h2>7. Propiedad intelectual</h2>
-    <p>Todos los derechos de propiedad intelectual e industrial sobre la App, el Sitio, su código, diseño, marcas, logotipos, textos, imágenes y contenidos pertenecen a Taxi360 o a sus licenciantes. Se concede al usuario una licencia limitada, personal, no exclusiva, intransferible y revocable para utilizar la App conforme a estos Términos. Queda prohibida cualquier otra explotación sin autorización expresa y por escrito.</p>
-
-    <h2>8. Disponibilidad del servicio</h2>
-    <p>Trabajamos para que la App esté disponible 24/7 pero no podemos garantizar la continuidad absoluta. Pueden producirse interrupciones por mantenimiento, actualizaciones, causas de fuerza mayor o incidencias de terceros (Google Cloud, Anthropic, operadoras de telefonía). No seremos responsables por perjuicios derivados de indisponibilidades temporales.</p>
-
-    <h2>9. Limitación de responsabilidad</h2>
-    <p>En la máxima medida permitida por la ley, Taxi360 no responderá de:</p>
-    <ul>
-      <li>Decisiones económicas, fiscales o laborales tomadas por el usuario en base a los datos de la App.</li>
-      <li>Multas de tráfico, sanciones administrativas o cualquier consecuencia del incumplimiento de la normativa de circulación.</li>
-      <li>Pérdidas indirectas, lucro cesante o daños reputacionales.</li>
-      <li>Errores o fallos en datos provenientes de terceros.</li>
-      <li>Pérdida de datos del usuario por eliminación accidental o fallo de su dispositivo (se recomienda exportar periódicamente).</li>
-    </ul>
-    <p>Nuestra responsabilidad máxima, en los casos en que legalmente no sea posible excluirla, se limita al importe pagado por el usuario durante los 12 meses anteriores al hecho que la origine.</p>
-
-    <h2>10. Modificación de los Términos</h2>
-    <p>Podemos modificar estos Términos en cualquier momento. Los cambios se anunciarán en la App y/o por email con al menos 30 días de antelación cuando afecten de forma sustancial a los derechos del usuario. Si no estás de acuerdo con los nuevos términos, puedes cancelar la suscripción y eliminar tu cuenta antes de que entren en vigor.</p>
-
-    <h2>11. Terminación</h2>
-    <p>Puedes dejar de usar la App y eliminar tu cuenta en cualquier momento. Nosotros podremos suspender o cancelar tu cuenta en caso de incumplimiento grave de estos Términos, notificándolo cuando sea posible.</p>
-
-    <h2>12. Ley aplicable y jurisdicción</h2>
-    <p>Estos Términos se rigen por la legislación española. Para la resolución de cualquier conflicto, las partes se someten a los juzgados y tribunales del domicilio del consumidor cuando el usuario actúe como tal, y a los juzgados de Barcelona (España) en los demás casos, sin perjuicio del fuero propio del consumidor.</p>
-
-    <h2>13. Plataformas de resolución de conflictos</h2>
-    <p>De conformidad con el Reglamento (UE) 524/2013, te informamos de la existencia de la plataforma europea de resolución de litigios en línea: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.</p>
-
-    <h2>14. Contacto</h2>
-    <p>Para cualquier cuestión relacionada con estos Términos:<br>
-    <strong>Email:</strong> <a href="mailto:taxi360barcelona@gmail.com">taxi360barcelona@gmail.com</a></p>
-
-    <p class="footer-note">© 2026 Taxi360 · TaxiNeto360 — Todos los derechos reservados.</p>
-  </div>
+  </footer>
 </body>
 </html>
