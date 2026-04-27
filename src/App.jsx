@@ -114,7 +114,7 @@ const TOOLS_ALL = [
     id: "neto",
     title: "Neto Apps",
     emoji: "💵",
-    description: "¿Cuánto te queda después de Uber, Cabify y comisiones? Aquí lo sabes al céntimo.",
+    description: "¿Cuánto te queda después de comisiones y plataformas? Aquí lo sabes al céntimo.",
     badge: "PREMIUM",
     badgeColor: "brand",
   },
@@ -198,12 +198,62 @@ const TOOLS_ALL = [
     badge: "FLOTA",
     badgeColor: "violet",
   },
+  {
+    id: "modocaza",
+    title: "Modo Caza",
+    emoji: "🎯",
+    description: "Guía en tiempo real cada 30 segundos. Te dice exactamente dónde ir para no circular vacío. Encadenamiento inteligente de picos de demanda.",
+    badge: "NUEVO",
+    badgeColor: "brand",
+  },
+  {
+    id: "cerebro",
+    title: "Cerebro Predictivo",
+    emoji: "🧠",
+    description: "IA Claude analiza toda la ciudad cada 15 minutos: vuelos, trenes, barcos, eventos, clima, hora. Te da 3 recomendaciones estratégicas con razonamiento.",
+    badge: "NUEVO",
+    badgeColor: "brand",
+  },
+  {
+    id: "anticipacion",
+    title: "Anticipación IA",
+    emoji: "🔮",
+    description: "Predice la demanda antes de que ocurra. Alertas de vuelos masivos, cruceros, eventos terminando, cambios de turno en hospitales y más.",
+    badge: "PREMIUM",
+    badgeColor: "brand",
+  },
+  {
+    id: "widget",
+    title: "Widget",
+    emoji: "📲",
+    description: "Widget en la pantalla de inicio de tu móvil. Ve dónde ir sin abrir la app. Se actualiza automáticamente.",
+    badge: "NUEVO",
+    badgeColor: "brand",
+  },
+  {
+    id: "androidauto",
+    title: "Android Auto",
+    emoji: "🚗",
+    description: "Navegación integrada en la pantalla de tu coche. Alertas de radares y guía por voz mientras conduces.",
+    badge: "PREMIUM",
+    badgeColor: "brand",
+  },
+  {
+    id: "jornada",
+    title: "Mi Jornada",
+    emoji: "📊",
+    description: "Registra tu turno completo: horas, kilómetros, servicios, ingresos por efectivo, tarjeta y apps. Todo en un toque.",
+    badge: "PREMIUM",
+    badgeColor: "brand",
+  },
 ];
 
 const TOOLS_EXTRAS = [
   { title: "Evidencias con fotos", emoji: "📸", description: "Fotos de VISA y taxímetro como prueba real ante cualquier reclamación." },
   { title: "Liquidaciones automáticas", emoji: "🧾", description: "Tus ingresos netos resumidos sin hacer cuentas a mano." },
   { title: "Exportación CSV / PDF / Excel", emoji: "📥", description: "Descarga todos tus datos en el formato que necesites. Listo para tu gestoría." },
+  { title: "Aviso por voz configurable", emoji: "🔊", description: "Elige voz, vibración o silencioso. Control de volumen independiente del teléfono." },
+  { title: "Horarios de atracciones", emoji: "🕐", description: "La app sabe cuándo cierran 30+ atracciones turísticas y te avisa de los picos de salida." },
 ];
 
 const PRICING_PLANS = [
@@ -290,23 +340,23 @@ const USE_CASES = [
 const FEATURES_SECURITY = [
   {
     icon: Shield,
-    title: "Datos privados",
-    description: "Tu información es solo tuya. Nadie más tiene acceso a tus registros ni a tus ganancias.",
+    title: "Tus datos son TUYOS",
+    description: "No compartimos ni proporcionamos datos a ninguna organización: ni al IMT, ni al Ayuntamiento, ni a Hacienda, ni a ningún tercero. Sin tu consentimiento expreso, nadie accede a nada.",
   },
   {
     icon: Lock,
-    title: "No se comparten sin tu permiso",
-    description: "Nunca compartimos tus datos con terceros. Tú decides quién ve qué.",
+    title: "Cero monitorización",
+    description: "No monitorizamos tu actividad ni la de tus pasajeros. No rastreamos tus rutas fuera de la app. Tus registros de jornada, ganancias y datos son privados y solo tú los ves.",
   },
   {
     icon: FileText,
-    title: "Información protegida",
-    description: "Encriptación de nivel empresarial. Tus datos están seguros ante cualquier situación.",
+    title: "Encriptación total",
+    description: "Tus datos viajan y se almacenan con encriptación de nivel empresarial en servidores europeos (Firebase EU). Sin puertas traseras, sin accesos ocultos.",
   },
   {
     icon: BadgeCheck,
-    title: "Evidencias verificables",
-    description: "Fotos de VISA y taxímetro como prueba real de cada jornada. Listo para auditorías.",
+    title: "Tú controlas todo",
+    description: "Puedes exportar, descargar o eliminar todos tus datos en cualquier momento. Si borras tu cuenta, se borran TODOS tus datos. Sin letra pequeña.",
   },
 ];
 
@@ -339,9 +389,9 @@ const FAQ_ITEMS = [
       "Sí, puedes cancelar tu suscripción en cualquier momento sin penalización. Tu acceso se mantendrá hasta el final del período pagado.",
   },
   {
-    question: "¿Es seguro conectar mi cuenta?",
+    question: "¿Es seguro? ¿Compartís mis datos con Hacienda o el Ayuntamiento?",
     answer:
-      "Totalmente. Usamos encriptación de nivel empresarial y nunca compartimos tus datos con terceros. Tus registros son solo tuyos.",
+      "NO. TaxiNeto360 no comparte, cede ni proporciona datos a ninguna organización: ni al IMT, ni al Ayuntamiento, ni a Hacienda, ni a ningún tercero. Tus datos son tuyos y solo tuyos. Usamos encriptación de nivel empresarial en servidores europeos. Sin tu consentimiento expreso, nadie accede a nada. Puedes eliminar todos tus datos en cualquier momento.",
   },
   {
     question: "¿Cómo funciona el programa de afiliados?",
